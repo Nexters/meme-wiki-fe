@@ -1,11 +1,12 @@
 {
   "name": "@meme-wiki/ui",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc -w",
+    "lint": "eslint \"src/**/*.ts*\""
   },
   "repository": {
     "type": "git",
