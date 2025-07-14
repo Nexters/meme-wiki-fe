@@ -1,5 +1,12 @@
 import { AxiosError } from 'axios';
 
+type APIErrorResponse = {
+  status: number;
+  error: string;
+  code: string;
+  reason: string[];
+};
+
 type ErrorCodeType = {
   [key: string]: { status: string; message: string };
 };
@@ -22,16 +29,9 @@ const ERROR_CODE: ErrorCodeType = {
   UNKNOWN: { status: 'ERROR', message: '알 수 없는 오류가 발생했습니다.' },
 } as const;
 
-export const getAPIErrorInfo = (
-  error: AxiosError<{
-    status: number;
-    error: string;
-    code: string;
-    reason: string[];
-  }>,
-) => {
-  const serverErrorCode = error?.response?.data?.code ?? '';
-  const axiosErrorCode = error?.code ?? '';
+export const getAPIErrorInfo = (error: AxiosError<APIErrorResponse>) => {
+  const serverErrorCode = error.response?.data?.code ?? '';
+  const axiosErrorCode = error.code ?? '';
 
   if (serverErrorCode in ERROR_CODE) {
     return ERROR_CODE[serverErrorCode as keyof typeof ERROR_CODE];
