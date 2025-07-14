@@ -7,6 +7,10 @@ import {
 import { PATH } from '@/constants/path';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { NotFound } from '@components/ErrorPage/NotFound';
+import { SomethingWentWrong } from '@components/ErrorPage/SomethingWentWrong';
+import { APIErrorBoundary } from '@components/ErrorBoundary/APIErrorBoundary';
+import { UnknownErrorBoundary } from '@components/ErrorBoundary/UnKnownErrorBoudary';
 
 type ROUTE_TYPE = 'PRIVATE' | 'PUBLIC';
 
@@ -22,11 +26,13 @@ const router = createBrowserRouter([
   {
     path: PATH.ROOT,
     element: (
-      <div>
-        <h1>Meme Wiki</h1>
-        <Outlet />
-      </div>
+      <UnknownErrorBoundary>
+        <APIErrorBoundary>
+          <Outlet />
+        </APIErrorBoundary>
+      </UnknownErrorBoundary>
     ),
+    errorElement: <SomethingWentWrong />,
     children: [
       {
         path: '/a',
@@ -34,6 +40,10 @@ const router = createBrowserRouter([
       },
       ...createAuthRouter('PRIVATE', []),
       ...createAuthRouter('PUBLIC', []),
+      {
+        path: '*',
+        element: <NotFound />,
+      },
     ],
   },
 ]);
