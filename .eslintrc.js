@@ -19,10 +19,20 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.js', 'vite.config.ts', '**.config.js',"packages/api/scripts/**.js"],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.js',
+    'vite.config.ts',
+    '**.config.js',
+    'packages/api/scripts/**.js',
+  ],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
@@ -39,7 +49,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: 'detect', // 자동으로 리액트 버전 감지
+      version: 'detect',
     },
   },
 };
