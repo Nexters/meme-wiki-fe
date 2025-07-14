@@ -1,6 +1,6 @@
 import { SomethingWentWrong } from '@components/ErrorPage/SomethingWentWrong';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { getAPIErrorInfo } from '@utils/getAPIErrorInfo';
+import { getAPIErrorInfo } from '@meme-wiki/apis';
 
 import { isAxiosError } from 'axios';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
