@@ -1,0 +1,32 @@
+{
+  "name": "meme-wiki",
+  "private": true,
+  "version": "1.4.0",
+  "scripts": {
+    "web:dev": "yarn workspace @meme-wiki/web dev",
+    "web:local": "yarn workspace @meme-wiki/web local",
+    "web:build": "yarn workspace @meme-wiki/web build"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.1.1"
+}
