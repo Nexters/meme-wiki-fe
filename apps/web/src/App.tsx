@@ -1,20 +1,17 @@
 import './index.css';
 
 import { MemeWikiUIProvider } from '@meme-wiki/ui';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <div>Meme Wiki</div>,
-  },
-]);
+import { RouteProvider } from './routes/RouteProvider';
+import { QueryClientProvider, QueryDevTools } from '@meme-wiki/apis';
 
 function App() {
   return (
-    <MemeWikiUIProvider>
-      <RouterProvider router={router} />
-    </MemeWikiUIProvider>
+    <QueryClientProvider>
+      <QueryDevTools />
+      <MemeWikiUIProvider>
+        <RouteProvider />
+      </MemeWikiUIProvider>
+    </QueryClientProvider>
   );
 }
 
