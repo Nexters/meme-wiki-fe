@@ -1,14 +1,7 @@
-/* eslint-disable no-useless-catch */
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
+import { instance } from './instance';
 
-export const fetchApiData = async <T, D = T>(
-  instance: AxiosInstance,
-  option: AxiosRequestConfig<D>,
-) => {
-  try {
-    const { data } = await instance<T>(option);
-    return data;
-  } catch (e) {
-    throw e;
-  }
+export const fetchApiData = async <T, D = T>(option: AxiosRequestConfig<D>) => {
+  const { data } = await instance<T>(option);
+  return data;
 };
