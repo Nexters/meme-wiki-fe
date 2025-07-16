@@ -20,7 +20,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Build shared packages
         run: |
@@ -34,7 +34,6 @@ jobs:
           yarn workspace @meme-wiki/apis lint
           yarn workspace @meme-wiki/apis build
 
-      # 웹 앱 빌드
       - name: Build web application
         run: |
           echo "Building @meme-wiki/web..."
