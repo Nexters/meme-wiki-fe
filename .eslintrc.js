@@ -33,10 +33,10 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off', // 함수 호출 관련 타입 체크 완화
-    '@typescript-eslint/no-unsafe-return': 'off', // 반환 값 타입 체크 완화
-    '@typescript-eslint/no-floating-promises': 'warn', // Promise 관련 경고로 변경
-    '@typescript-eslint/restrict-template-expressions': 'off', // 템플릿 리터럴 타입 체크 완화
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
