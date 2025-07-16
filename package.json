@@ -1,0 +1,19 @@
+{
+  "name": "cllaude99_lib",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "type-check": "turbo run type-check"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.5.1",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "pnpm@8.15.6"
+}

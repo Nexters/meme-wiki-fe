@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+.pnpm-store/
+
+# Build outputs
+dist
+dist-ssr
+build
+.turbo
+
+# IDE and editor files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache and temporary files
+.cache
+.temp
+.DS_Store
+*.local
+
+

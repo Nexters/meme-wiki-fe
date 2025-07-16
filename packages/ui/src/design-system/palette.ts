@@ -1,0 +1,21 @@
+export const palette = {
+  primary: '#3D83F7',
+  primaryDark: '#3571E3',
+  secondary: '#4CAF50',
+  secondaryDark: '#2E7D32',
+  danger: '#F44336',
+  dangerDark: '#C62828',
+  gray: {
+    100: '#F8F9FA',
+    200: '#F1F3F5',
+    300: '#E9ECEF',
+    400: '#DEE2E6',
+    500: '#CED4DA',
+    600: '#ADB5BD',
+    700: '#868E96',
+    800: '#495057',
+    900: '#343A40',
+  },
+  white: '#FFFFFF',
+  black: '#000000',
+} as const;

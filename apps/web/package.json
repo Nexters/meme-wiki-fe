@@ -1,0 +1,37 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --clearScreen false",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@meme_wiki/ui": "workspace:*",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@tanstack/react-query": "^5.8.1",
+    "@tanstack/react-query-devtools": "^5.8.1",
+    "axios": "^1.7.7",
+    "motion": "^12.20.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.6.3",
+    "the-new-css-reset": "^1.11.3",
+    "react-error-boundary": "^4.0.11"
+  },
+  "devDependencies": {
+    "@cllaude99_lib/eslint-config": "workspace:*",
+    "@cllaude99_lib/typescript-config": "workspace:*",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.57.0",
+    "typescript": "5.5.4",
+    "vite": "^5.1.4"
+  }
+}
