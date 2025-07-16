@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build shared packages
+        run: |
+          echo "Building @meme-wiki/ui..."
+          yarn workspace @meme-wiki/ui tsc --noEmit
+          yarn workspace @meme-wiki/ui lint
+          yarn workspace @meme-wiki/ui build
+
+          echo "Building @meme-wiki/apis..."
+          yarn workspace @meme-wiki/apis tsc --noEmit
+          yarn workspace @meme-wiki/apis lint
+          yarn workspace @meme-wiki/apis build
+
+      # 웹 앱 빌드
+      - name: Build web application
+        run: |
+          echo "Building @meme-wiki/web..."
+          yarn workspace @meme-wiki/web lint
+          yarn workspace @meme-wiki/web build
