@@ -1,14 +1,13 @@
-import { motion } from 'motion/react';
+import { Button } from '@meme_wiki/ui';
 
 const DefaultComponent = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div>
       <h1>DefaultComponent</h1>
-    </motion.div>
+      <Button variant="primary" size="medium">
+        Click me
+      </Button>
+    </div>
   );
 };
 

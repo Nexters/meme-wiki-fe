@@ -1,17 +1,16 @@
 import styled from '@emotion/styled';
 
-type ColorTheme = 'primary' | 'secondary' | 'ghost' | 'danger';
-type Size = 'small' | 'medium' | 'large';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
-  variant: ColorTheme;
-  size: Size;
+  variant: ButtonVariant;
+  size: ButtonSize;
   disabled?: boolean;
-  icon?: React.ReactNode;
 }
 
-const Container = styled.button<ButtonProps>`
-  display: flex;
+export const StyledButton = styled.button<ButtonProps>`
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
@@ -33,7 +32,7 @@ const Container = styled.button<ButtonProps>`
       case 'small':
         return `
           height: 36px;
-          padding: 7px 14px;
+          padding: 8px 16px;
           font-size: ${theme.typography.button.button3.fontSize};
           line-height: ${theme.typography.button.button3.lineHeight};
           letter-spacing: ${theme.typography.button.button3.letterSpacing};
@@ -42,7 +41,7 @@ const Container = styled.button<ButtonProps>`
       case 'medium':
         return `
           height: 44px;
-          padding: 11px 18px;
+          padding: 10px 20px;
           font-size: ${theme.typography.button.button2.fontSize};
           line-height: ${theme.typography.button.button2.lineHeight};
           letter-spacing: ${theme.typography.button.button2.letterSpacing};
@@ -50,8 +49,8 @@ const Container = styled.button<ButtonProps>`
         `;
       case 'large':
         return `
-          height: 48px;
-          padding: 13px 20px;
+          height: 52px;
+          padding: 12px 24px;
           font-size: ${theme.typography.button.button1.fontSize};
           line-height: ${theme.typography.button.button1.lineHeight};
           letter-spacing: ${theme.typography.button.button1.letterSpacing};
@@ -69,6 +68,11 @@ const Container = styled.button<ButtonProps>`
           background-color: ${theme.palette.primary};
 
           &:hover:not(:disabled) {
+            border-color: ${theme.palette.primaryDark};
+            background-color: ${theme.palette.primaryDark};
+          }
+
+          &:active:not(:disabled) {
             border-color: ${theme.palette.primaryDark};
             background-color: ${theme.palette.primaryDark};
           }
@@ -120,39 +124,3 @@ const Container = styled.button<ButtonProps>`
     }
   }}
 `;
-
-const Icon = styled.span<Pick<ButtonProps, 'size'> & { hasChildren: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${({ size, hasChildren }) => {
-    if (!hasChildren) return null;
-
-    switch (size) {
-      case 'small':
-        return `
-          width: 16px;
-          height: 16px;
-          margin-right: 6px;
-        `;
-      case 'medium':
-        return `
-          width: 20px;
-          height: 20px;
-          margin-right: 8px;
-        `;
-      case 'large':
-        return `
-          width: 24px;
-          height: 24px;
-          margin-right: 8px;
-        `;
-    }
-  }}
-`;
-
-export default {
-  Container,
-  Icon,
-};

@@ -1,4 +1,5 @@
 export const typography = {
+  fontFamily: "'Pretendard Variable', Pretendard, system-ui, sans-serif",
   heading: {
     h1: {
       fontSize: '48px',

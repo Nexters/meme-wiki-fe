@@ -1,4 +1,6 @@
+/* 크롬 개발자 도구 기준 */
 export const breakpoints = {
+  mobile: '425px',
   tablet: '768px',
   desktop: '1024px',
 } as const;

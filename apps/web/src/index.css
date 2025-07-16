@@ -141,6 +141,23 @@ table {
   box-sizing: border-box;
 }
 
-html {
+html,
+body,
+button,
+input,
+textarea,
+select,
+option,
+optgroup,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
   font-family: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
 }

@@ -1,20 +1,18 @@
 import { ButtonHTMLAttributes } from 'react';
-import Styled, { ButtonProps } from './Button.styles';
+import { StyledButton, ButtonProps } from './Button.styles';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps;
 
-const Button = ({ children, variant = 'primary', size = 'medium', icon, ...rest }: Props) => {
-  const hasChildren = !!children;
-
+const Button = ({
+  children,
+  variant = 'primary',
+  size = 'medium',
+  ...rest
+}: Props) => {
   return (
-    <Styled.Container variant={variant} size={size} {...rest}>
-      {icon && (
-        <Styled.Icon size={size} hasChildren={hasChildren}>
-          {icon}
-        </Styled.Icon>
-      )}
+    <StyledButton variant={variant} size={size} {...rest}>
       {children}
-    </Styled.Container>
+    </StyledButton>
   );
 };
 
