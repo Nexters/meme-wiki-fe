@@ -47,7 +47,7 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-    'no-console': 'warn',
+    'no-console': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react/prop-types': 'off',
   },
