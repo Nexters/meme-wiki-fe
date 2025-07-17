@@ -14,6 +14,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import DefaultComponent from '@/components/DefaultComponent';
 import LandingPage from '@/pages/Landing';
+import InAppBrowserDetect from '@/components/InAppBrowser';
 
 type ROUTE_TYPE = 'PRIVATE' | 'PUBLIC';
 
@@ -29,11 +30,13 @@ const router = createBrowserRouter([
   {
     path: PATH.ROOT,
     element: (
-      <UnknownErrorBoundary>
-        <APIErrorBoundary>
-          <Outlet />
-        </APIErrorBoundary>
-      </UnknownErrorBoundary>
+      <InAppBrowserDetect>
+        <UnknownErrorBoundary>
+          <APIErrorBoundary>
+            <Outlet />
+          </APIErrorBoundary>
+        </UnknownErrorBoundary>
+      </InAppBrowserDetect>
     ),
     errorElement: <SomethingWentWrong />,
     children: [
