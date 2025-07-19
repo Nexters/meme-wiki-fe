@@ -15,6 +15,8 @@ import { PublicRoute } from './PublicRoute';
 import DefaultComponent from '@/components/DefaultComponent';
 import LandingPage from '@/pages/Landing';
 import InAppBrowserDetect from '@/components/InAppBrowser';
+import { MemeDetailPage } from '@/pages/MemeDetailPage';
+import { MemeQuizPage } from '@/pages/MemeQuizPage';
 
 type ROUTE_TYPE = 'PRIVATE' | 'PUBLIC';
 
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <LandingPage />,
+      },
+      {
+        path: PATH.MEME_DETAIL(),
+        element: <MemeDetailPage />,
+      },
+      {
+        path: PATH.QUIZ,
+        element: <MemeQuizPage />,
       },
       {
         path: '/default',
