@@ -1,12 +1,11 @@
+import Layout from '@/components/Layout';
 import * as S from './Landing.styles';
 
 const LandingPage = () => {
   return (
-    <S.Container>
-      <S.Header>
-        <S.Title>MemeWiki</S.Title>
-      </S.Header>
-    </S.Container>
+    <Layout>
+      <S.Title>MemeWiki</S.Title>
+    </Layout>
   );
 };
 

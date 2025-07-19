@@ -4,7 +4,7 @@ interface SomethingWentWrongProps {
   errorMessage?: string;
 }
 
-export const SomethingWentWrong = ({
+const SomethingWentWrong = ({
   onRetry,
   status,
   errorMessage,
@@ -18,3 +18,5 @@ export const SomethingWentWrong = ({
     </div>
   );
 };
+
+export default SomethingWentWrong;

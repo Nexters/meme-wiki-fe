@@ -2,7 +2,7 @@ import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { getAPIErrorInfo } from '@meme_wiki/apis';
 import { isAxiosError } from 'axios';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { SomethingWentWrong } from '@/components/ErrorPage/SomethingWentWrong';
+import SomethingWentWrong from '@/components/ErrorPage/SomethingWentWrong';
 
 const APIErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   if (isAxiosError(error)) {
@@ -20,11 +20,7 @@ const APIErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   }
 };
 
-export const APIErrorBoundary = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const APIErrorBoundary = ({ children }: { children: React.ReactNode }) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
@@ -33,3 +29,5 @@ export const APIErrorBoundary = ({
     </ErrorBoundary>
   );
 };
+
+export default APIErrorBoundary;

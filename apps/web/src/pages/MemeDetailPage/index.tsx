@@ -1,3 +1,5 @@
-export const MemeDetailPage = () => {
+const MemeDetailPage = () => {
   return <div>MemeDetailPage</div>;
 };
+
+export default MemeDetailPage;

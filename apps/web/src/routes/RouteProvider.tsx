@@ -6,17 +6,16 @@ import {
 } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 
-import { NotFound } from '@/components/ErrorPage/NotFound';
-import { SomethingWentWrong } from '@/components/ErrorPage/SomethingWentWrong';
-import { APIErrorBoundary } from '@/components/ErrorBoundary/APIErrorBoundary';
-import { UnknownErrorBoundary } from '@/components/ErrorBoundary/UnKnownErrorBoudary';
-import { PrivateRoute } from './PrivateRoute';
-import { PublicRoute } from './PublicRoute';
-import DefaultComponent from '@/components/DefaultComponent';
+import NotFound from '@/components/ErrorPage/NotFound';
+import SomethingWentWrong from '@/components/ErrorPage/SomethingWentWrong';
+import APIErrorBoundary from '@/components/ErrorBoundary/APIErrorBoundary';
+import UnknownErrorBoundary from '@/components/ErrorBoundary/UnKnownErrorBoudary';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 import LandingPage from '@/pages/Landing';
 import InAppBrowserDetect from '@/components/InAppBrowser';
-import { MemeDetailPage } from '@/pages/MemeDetailPage';
-import { MemeQuizPage } from '@/pages/MemeQuizPage';
+import MemeDetailPage from '@/pages/MemeDetailPage';
+import MemeQuizPage from '@/pages/MemeQuizPage';
 
 type ROUTE_TYPE = 'PRIVATE' | 'PUBLIC';
 
@@ -54,10 +53,6 @@ const router = createBrowserRouter([
         path: PATH.QUIZ,
         element: <MemeQuizPage />,
       },
-      {
-        path: '/default',
-        element: <DefaultComponent />,
-      },
       ...createAuthRouter('PRIVATE', []),
       ...createAuthRouter('PUBLIC', []),
       {
@@ -68,4 +63,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const RouteProvider = () => <RouterProvider router={router} />;
+const RouteProvider = () => <RouterProvider router={router} />;
+
+export default RouteProvider;
