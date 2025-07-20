@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,13 +10,13 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const NavigationContainer = styled.div`
+const NavigationContainer = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
 `;
 
-export const BackButton = styled.button`
+const BackButton = styled.button`
   padding: 8px 16px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.palette.gray[300]};
@@ -38,26 +38,26 @@ export const BackButton = styled.button`
   }
 `;
 
-export const QuizImage = styled.img`
+const QuizImage = styled.img`
   width: 100%;
   max-width: 500px;
   height: auto;
   border-radius: 8px;
 `;
 
-export const Title = styled.h1`
+const Title = styled.h1`
   ${({ theme }) => theme.typography.heading.h3};
   color: ${({ theme }) => theme.palette.gray[900]};
   text-align: center;
 `;
 
-export const Summary = styled.p`
+const Summary = styled.p`
   ${({ theme }) => theme.typography.body.medium};
   color: ${({ theme }) => theme.palette.gray[700]};
   text-align: center;
 `;
 
-export const QuestionContainer = styled.div`
+const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -65,7 +65,7 @@ export const QuestionContainer = styled.div`
   max-width: 500px;
 `;
 
-export const Button = styled.button<{ isSelected?: boolean }>`
+const Button = styled.button<{ isSelected?: boolean }>`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
@@ -83,10 +83,22 @@ export const Button = styled.button<{ isSelected?: boolean }>`
   }
 `;
 
-export const ResultContainer = styled.div`
+const ResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   text-align: center;
 `;
+
+export {
+  Container,
+  NavigationContainer,
+  BackButton,
+  QuizImage,
+  Title,
+  Summary,
+  QuestionContainer,
+  Button,
+  ResultContainer,
+};
