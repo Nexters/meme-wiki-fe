@@ -4,7 +4,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: #ffffff;
-  border: 1px solid red;
 `;
 
 const ImageContainer = styled.div`
