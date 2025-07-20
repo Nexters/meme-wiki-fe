@@ -65,7 +65,7 @@ export const QuestionContainer = styled.div`
   max-width: 500px;
 `;
 
-export const Button = styled.button<{ isSelected: boolean }>`
+export const Button = styled.button<{ isSelected?: boolean }>`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
@@ -80,12 +80,6 @@ export const Button = styled.button<{ isSelected: boolean }>`
   &:hover {
     background-color: ${({ theme, isSelected }) =>
       isSelected ? theme.palette.primaryDark : theme.palette.gray[100]};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.palette.primary};
-    color: ${({ theme }) => theme.palette.white};
-    transform: scale(0.98);
   }
 `;
 
