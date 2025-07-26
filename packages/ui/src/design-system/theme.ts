@@ -3,9 +3,9 @@ import { typography } from './typography';
 import { breakpoints } from './breakpoints';
 
 export const theme = {
+  breakpoints,
   palette,
   typography,
-  breakpoints,
 } as const;
 
 export type ThemeType = typeof theme;
