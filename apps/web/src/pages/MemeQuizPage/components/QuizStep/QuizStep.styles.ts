@@ -19,9 +19,9 @@ const NavigationContainer = styled.div`
 const BackButton = styled.button`
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray[300]};
-  background-color: ${({ theme }) => theme.palette.white};
-  color: ${({ theme }) => theme.palette.gray[900]};
+  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
+  background-color: ${({ theme }) => theme.palette.common.white};
+  color: ${({ theme }) => theme.palette.common.black};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   display: flex;
@@ -29,7 +29,7 @@ const BackButton = styled.button`
   gap: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette.gray[100]};
+    background-color: ${({ theme }) => theme.palette.gray['gray-1']};
   }
 
   &:disabled {
@@ -46,14 +46,14 @@ const QuizImage = styled.img`
 `;
 
 const Title = styled.h1`
-  ${({ theme }) => theme.typography.heading.h3};
-  color: ${({ theme }) => theme.palette.gray[900]};
+  ${({ theme }) => theme.typography.title['subhead-long1']};
+  color: ${({ theme }) => theme.palette.gray['gray-9']};
   text-align: center;
 `;
 
 const Summary = styled.p`
-  ${({ theme }) => theme.typography.body.medium};
-  color: ${({ theme }) => theme.palette.gray[700]};
+  ${({ theme }) => theme.typography.body['body-long1']};
+  color: ${({ theme }) => theme.palette.gray['gray-7']};
   text-align: center;
 `;
 
@@ -69,17 +69,17 @@ const Button = styled.button<{ isSelected?: boolean }>`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray[300]};
+  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
   background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.primary : theme.palette.white};
+    isSelected ? theme.palette.main.blue[50] : theme.palette.common.white};
   color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.white : theme.palette.gray[900]};
+    isSelected ? theme.palette.common.white : theme.palette.common.black};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: ${({ theme, isSelected }) =>
-      isSelected ? theme.palette.primaryDark : theme.palette.gray[100]};
+      isSelected ? theme.palette.main.blue[40] : theme.palette.gray['gray-1']};
   }
 `;
 

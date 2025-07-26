@@ -33,28 +33,28 @@ export const StyledButton = styled.button<ButtonProps>`
         return `
           height: 36px;
           padding: 8px 16px;
-          font-size: ${theme.typography.button.button3.fontSize};
-          line-height: ${theme.typography.button.button3.lineHeight};
-          letter-spacing: ${theme.typography.button.button3.letterSpacing};
-          font-weight: ${theme.typography.button.button3.fontWeight};
+          font-size: ${theme.typography.title['subhead-long1'].fontSize};
+          line-height: ${theme.typography.title['subhead-long1'].lineHeight};
+          letter-spacing: ${theme.typography.title['subhead-long1'].letterSpacing};
+          font-weight: ${theme.typography.title['subhead-long1'].fontWeight};
         `;
       case 'medium':
         return `
           height: 44px;
           padding: 10px 20px;
-          font-size: ${theme.typography.button.button2.fontSize};
-          line-height: ${theme.typography.button.button2.lineHeight};
-          letter-spacing: ${theme.typography.button.button2.letterSpacing};
-          font-weight: ${theme.typography.button.button2.fontWeight};
+          font-size: ${theme.typography.title['subhead-long1'].fontSize};
+          line-height: ${theme.typography.title['subhead-long1'].lineHeight};
+          letter-spacing: ${theme.typography.title['subhead-long1'].letterSpacing};
+          font-weight: ${theme.typography.title['subhead-long1'].fontWeight};
         `;
       case 'large':
         return `
           height: 52px;
           padding: 12px 24px;
-          font-size: ${theme.typography.button.button1.fontSize};
-          line-height: ${theme.typography.button.button1.lineHeight};
-          letter-spacing: ${theme.typography.button.button1.letterSpacing};
-          font-weight: ${theme.typography.button.button1.fontWeight};
+          font-size: ${theme.typography.title['subhead-long1'].fontSize};
+          line-height: ${theme.typography.title['subhead-long1'].lineHeight};
+          letter-spacing: ${theme.typography.title['subhead-long1'].letterSpacing};
+          font-weight: ${theme.typography.title['subhead-long1'].fontWeight};
         `;
     }
   }}
@@ -63,62 +63,62 @@ export const StyledButton = styled.button<ButtonProps>`
     switch (variant) {
       case 'primary':
         return `
-          color: ${theme.palette.white};
-          border-color: ${theme.palette.primary};
-          background-color: ${theme.palette.primary};
+          color: ${theme.palette.common.white};
+          border-color: ${theme.palette.main.blue[50]};
+          background-color: ${theme.palette.main.blue[50]};
 
           &:hover:not(:disabled) {
-            border-color: ${theme.palette.primaryDark};
-            background-color: ${theme.palette.primaryDark};
+            border-color: ${theme.palette.main.blue[40]};
+            background-color: ${theme.palette.main.blue[40]};
           }
 
           &:active:not(:disabled) {
-            border-color: ${theme.palette.primaryDark};
-            background-color: ${theme.palette.primaryDark};
+            border-color: ${theme.palette.main.blue[30]};
+            background-color: ${theme.palette.main.blue[30]};
           }
         `;
       case 'secondary':
         return `
-          color: ${theme.palette.gray[900]};
+          color: ${theme.palette.common.black};
           border: none;
-          background-color: ${theme.palette.gray[100]};
+          background-color: ${theme.palette.common.white};
 
           &:hover:not(:disabled) {
-            background-color: ${theme.palette.gray[200]};
+            background-color: ${theme.palette.gray['gray-2']};
           }
 
           &:active:not(:disabled) {
-            background-color: ${theme.palette.gray[300]};
+            background-color: ${theme.palette.gray['gray-3']};
           }
         `;
       case 'ghost':
         return `
-          color: ${theme.palette.gray[900]};
-          border-color: ${theme.palette.gray[900]};
-          background-color: ${theme.palette.white};
+          color: ${theme.palette.common.black};
+          border-color: ${theme.palette.gray['gray-9']};
+          background-color: ${theme.palette.common.white};
 
           &:hover:not(:disabled) {
-            border-color: ${theme.palette.gray[700]};
-            color: ${theme.palette.gray[700]};
+            border-color: ${theme.palette.gray['gray-7']};
+            color: ${theme.palette.gray['gray-7']};
           }
 
           &:active:not(:disabled) {
-            color: ${theme.palette.gray[600]};
-            border-color: ${theme.palette.gray[600]};
+            color: ${theme.palette.gray['gray-6']};
+            border-color: ${theme.palette.gray['gray-6']};
           }
         `;
       case 'danger':
         return `
-          color: ${theme.palette.white};
+          color: ${theme.palette.common.white};
           border: none;
-          background-color: ${theme.palette.danger};
+          background-color: ${theme.palette.main.red[50]};
 
           &:hover:not(:disabled) {
-            background-color: ${theme.palette.dangerDark};
+            background-color: ${theme.palette.main.red[40]};
           }
 
           &:active:not(:disabled) {
-            background-color: ${theme.palette.dangerDark};
+            background-color: ${theme.palette.main.red[30]};
           }
         `;
     }

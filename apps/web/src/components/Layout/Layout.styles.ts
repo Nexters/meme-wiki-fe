@@ -7,7 +7,7 @@ const Layout = styled.main`
   width: 100%;
   height: 100vh;
   max-width: ${breakpoints.mobile};
-  border: 1px solid ${({ theme }) => theme.palette.gray[800]};
+  border: 1px solid ${({ theme }) => theme.palette.gray['gray-8']};
   margin: 0 auto;
 `;
 
