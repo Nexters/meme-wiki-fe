@@ -20,15 +20,26 @@ const Image = styled.img`
 
 const ShareButton = styled.button`
   position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.palette.common.black};
+  color: ${({ theme }) => theme.palette.common.white};
   left: 50%;
   bottom: 20px;
   transform: translateX(-50%);
-  background-color: #ffffff;
   border: none;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 34px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`;
+
+const ShareButtonText = styled.span`
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  color: #f5f5f5;
 `;
 
 const ContentContainer = styled.div`
@@ -67,6 +78,63 @@ const Description = styled.p`
   line-height: 1.5;
 `;
 
+const YearBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background-color: #f0f0f0;
+  border-radius: 154px;
+  margin-bottom: 8px;
+`;
+
+const YearText = styled.span`
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 18.82px;
+`;
+
+const Title = styled.h1`
+  font-family: Pretendard;
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.392px;
+  line-height: 38.024px;
+  margin-bottom: 4px;
+`;
+
+const HashTags = styled.div`
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0.353px;
+  line-height: 28px;
+  margin-bottom: 24px;
+`;
+
+const SectionTitle = styled.h2`
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 600;
+  color: #171719;
+  letter-spacing: 0.203px;
+  line-height: 20.006px;
+  margin-bottom: 4px;
+`;
+
+const SectionText = styled.p`
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  color: #171719;
+  letter-spacing: 0.091px;
+  line-height: 26px;
+  margin-bottom: 24px;
+`;
+
 export {
   Container,
   ImageContainer,
@@ -78,4 +146,11 @@ export {
   Hashtag,
   Description,
   ShareButton,
+  ShareButtonText,
+  YearBadge,
+  YearText,
+  Title,
+  HashTags,
+  SectionTitle,
+  SectionText,
 };

@@ -1,27 +1,25 @@
 import Layout from '@/components/Layout';
+import Share from '@/assets/icons/Share';
+import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 
 const DUMMY_DATA = {
   resultType: 'SUCCESS',
   success: {
     id: 1,
-    title: '밈 제목',
-    summary:
-      '로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.',
-    source: '출처',
-    background: '배경',
+    title: '아니 이게 뭔 소리야?',
+    summary: '혼란스러운 상황에서 사용되는 대표적인 밈',
+    usage:
+      '예상치 못한 상황이나 이해하기 어려운 일이 발생했을 때 사용됩니다. 특히 황당한 뉴스나 소식을 접했을 때 자주 사용되며, 때로는 유머러스한 반응을 표현하는 데에도 활용됩니다.',
+    origin:
+      '2020년 한 예능 프로그램에서 연예인이 황당한 상황에 직면했을 때 했던 말이 온라인상에서 유행하기 시작했습니다. 이후 다양한 상황에서 패러디되어 현재는 디지털 문화의 대표적인 밈으로 자리잡았습니다. SNS와 커뮤니티를 중심으로 빠르게 확산되어 현재까지도 활발하게 사용되고 있습니다.',
     image: 'https://picsum.photos/800/600',
-    hashtags: ['밈', '유머', '재미있는', '트렌드'],
+    hashtags: ['황당', '혼란', '이해불가', '예능밈'],
   },
   error: null,
 } as const;
 
 const MemeDetailPage = () => {
-  const handleShare = () => {
-    // 공유 기능 구현
-    alert('공유하기 기능이 구현될 예정입니다.');
-  };
-
   return (
     <Layout>
       <S.Container>
@@ -30,20 +28,30 @@ const MemeDetailPage = () => {
             src={DUMMY_DATA.success.image}
             alt={DUMMY_DATA.success.title}
           />
-          <S.ShareButton onClick={handleShare}>공유하기</S.ShareButton>
+          <S.ShareButton
+            onClick={() => {
+              nativeBridge.shareMeme({
+                title: DUMMY_DATA.success.title,
+                image: DUMMY_DATA.success.image,
+              });
+            }}
+          >
+            <Share />
+            <S.ShareButtonText>공유하기</S.ShareButtonText>
+          </S.ShareButton>
         </S.ImageContainer>
         <S.ContentContainer>
-          <S.TagContainer>
-            <S.Hashtag>최신순</S.Hashtag>
-            <S.Hashtag>인기순</S.Hashtag>
-          </S.TagContainer>
-          <S.CategoryTitle>카테고리</S.CategoryTitle>
-          <S.HashtagContainer>
-            {DUMMY_DATA.success.hashtags.map((tag) => (
-              <S.Hashtag key={tag}>#{tag}</S.Hashtag>
-            ))}
-          </S.HashtagContainer>
-          <S.Description>{DUMMY_DATA.success.summary}</S.Description>
+          <S.YearBadge>
+            <S.YearText>{2020}</S.YearText>
+          </S.YearBadge>
+          <S.Title>{DUMMY_DATA.success.title}</S.Title>
+          <S.HashTags>
+            {DUMMY_DATA.success.hashtags.map((tag) => `#${tag} `)}
+          </S.HashTags>
+          <S.SectionTitle>용도를 표현하는 문구</S.SectionTitle>
+          <S.SectionText>{DUMMY_DATA.success.usage}</S.SectionText>
+          <S.SectionTitle>유래를 표현하는 문구</S.SectionTitle>
+          <S.SectionText>{DUMMY_DATA.success.origin}</S.SectionText>
         </S.ContentContainer>
       </S.Container>
     </Layout>
