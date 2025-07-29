@@ -1,3 +1,4 @@
-import { useInfoQuery } from './useInfoQuery';
+import { useMemeDetailQuery } from './useMemeDetailQuery';
+import { useMemeQuizQuery } from './useMemeQuizQuery';
 
-export { useInfoQuery };
+export { useMemeDetailQuery, useMemeQuizQuery };
