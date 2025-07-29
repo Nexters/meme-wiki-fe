@@ -65,7 +65,7 @@ class NativeBridge {
 
   private sendCommand<T extends CommandType>(
     type: T,
-    data: CommandDataMap[T],
+    data?: CommandDataMap[T],
   ): void {
     try {
       const bridgeCommand: BridgeCommand<T> = {
@@ -88,7 +88,7 @@ class NativeBridge {
   }
 
   // 밈 공유하기
-  shareMeme(data: ShareMemeData): void {
+  shareMeme(data: ShareMemeData) {
     this.sendCommand(COMMAND_TYPE.SHARE_MEME, data);
   }
 }

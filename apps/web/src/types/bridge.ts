@@ -15,7 +15,7 @@ export type CommandDataMap = {
 
 export interface BridgeCommand<T extends CommandType> {
   type: T;
-  data: CommandDataMap[T];
+  data?: CommandDataMap[T];
 }
 
 declare global {
