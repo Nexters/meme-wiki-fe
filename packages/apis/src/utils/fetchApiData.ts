@@ -1,7 +1,9 @@
 import { AxiosRequestConfig } from 'axios';
 import { instance } from './instance';
 
-export const fetchApiData = async <T, D = T>(option: AxiosRequestConfig<D>) => {
-  const { data } = await instance<T>(option);
+export const fetchApiData = async <ResponseData, RequestData = ResponseData>(
+  option: AxiosRequestConfig<RequestData>,
+) => {
+  const { data } = await instance<ResponseData>(option);
   return data;
 };
