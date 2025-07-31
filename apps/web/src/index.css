@@ -1,4 +1,7 @@
+/* Pretendard */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard-dynamic-subset.min.css');
+/* Galmuri */
+@import url('https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
 /* Reset CSS */
 html,
@@ -136,28 +139,7 @@ table {
 }
 
 /* Custom Styles */
-
 * {
   box-sizing: border-box;
-}
-
-html,
-body,
-button,
-input,
-textarea,
-select,
-option,
-optgroup,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
   font-family: 'Pretendard Variable', Pretendard, system-ui, sans-serif;
 }
