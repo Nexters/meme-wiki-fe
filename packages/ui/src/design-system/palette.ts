@@ -4,7 +4,7 @@ export const palette = {
     white: '#FFFFFF',
   },
   gray: {
-    'gray-11': '#121212',
+    'gray-10': '#121212',
     'gray-9': '#1F2021',
     'gray-8': '#313133',
     'gray-7': '#5C5E61',
