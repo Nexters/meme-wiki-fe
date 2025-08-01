@@ -4,7 +4,7 @@ import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
 import { useRef } from 'react';
-import { useEffect, useState } from 'react';
+import { useScroll, useTransform, useSpring } from 'motion/react';
 
 const DUMMY_DATA = {
   resultType: 'SUCCESS',
@@ -25,21 +25,27 @@ const DUMMY_DATA = {
 
 const MemeDetailPage = () => {
   const theme = useTheme();
-  const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({ container: containerRef });
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  const height = useTransform(scrollY, [0, 200], [400, 200]);
+  const smoothHeight = useSpring(height, {
+    stiffness: 200,
+    damping: 20,
+    mass: 0.5,
+  });
 
-    const handleScroll = () => {
-      const scrollPosition = container.scrollTop;
-      setScrollProgress(Math.min(200, scrollPosition));
-    };
+  const textWidth = useTransform(scrollY, [0, 50], [100, 0]);
+  const smoothTextWidth = useSpring(textWidth, {
+    stiffness: 300,
+    damping: 30,
+  });
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
+  const padding = useTransform(scrollY, [0, 50], [16, 10]);
+  const smoothPadding = useSpring(padding, {
+    stiffness: 300,
+    damping: 30,
+  });
 
   return (
     <Layout
@@ -50,13 +56,13 @@ const MemeDetailPage = () => {
       }}
     >
       <S.Container ref={containerRef}>
-        <S.ImageContainer scrollProgress={scrollProgress}>
+        <S.ImageContainer style={{ height: smoothHeight }}>
           <S.Image
             src={DUMMY_DATA.success.image}
             alt={DUMMY_DATA.success.title}
           />
           <S.ShareButton
-            scrollProgress={scrollProgress}
+            style={{ padding: smoothPadding }}
             onClick={() => {
               nativeBridge.shareMeme({
                 title: DUMMY_DATA.success.title,
@@ -65,7 +71,7 @@ const MemeDetailPage = () => {
             }}
           >
             <ShareIcon width={24} height={24} />
-            <S.ShareButtonText scrollProgress={scrollProgress}>
+            <S.ShareButtonText style={{ maxWidth: smoothTextWidth }}>
               공유하기
             </S.ShareButtonText>
           </S.ShareButton>

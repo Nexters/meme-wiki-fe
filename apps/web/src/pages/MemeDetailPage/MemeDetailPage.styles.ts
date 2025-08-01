@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'motion/react';
 
 const Container = styled.div`
   width: 100%;
@@ -8,16 +9,16 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 `;
 
-const ImageContainer = styled.div<{ scrollProgress: number }>`
+const ImageContainer = styled(motion.div)`
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 10;
-  height: ${({ scrollProgress }) => Math.max(200, 400 - scrollProgress)}px;
   padding: 14px;
-  transition: height 0.1s linear;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
 `;
 
@@ -28,7 +29,7 @@ const Image = styled.img`
   border-radius: 12px;
 `;
 
-const ShareButton = styled.button<{ scrollProgress: number }>`
+const ShareButton = styled(motion.button)`
   position: absolute;
   display: flex;
   align-items: center;
@@ -38,22 +39,16 @@ const ShareButton = styled.button<{ scrollProgress: number }>`
   transform: translateX(-50%);
   bottom: 26px;
   border: 1px solid ${({ theme }) => theme.palette.common.white};
-  padding: ${({ scrollProgress }) =>
-    scrollProgress > 50 ? '10px' : '10px 16px'};
   border-radius: 10px;
   cursor: pointer;
   color: ${({ theme }) => theme.palette.common.white};
-  transition: all 0.1s linear;
 `;
 
-const ShareButtonText = styled.span<{ scrollProgress: number }>`
+const ShareButtonText = styled(motion.span)`
   ${({ theme }) => theme.typography.body.body1};
   color: ${({ theme }) => theme.palette.common.white};
-  opacity: ${({ scrollProgress }) => Math.max(0, 1 - scrollProgress / 50)};
-  max-width: ${({ scrollProgress }) => (scrollProgress > 50 ? '0' : '100px')};
   overflow: hidden;
   white-space: nowrap;
-  transition: all 0.1s linear;
 `;
 
 const ContentContainer = styled.div`
