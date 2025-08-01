@@ -1,3 +1,1 @@
-import Share from './Share';
-
-export { Share };
+export * from './components';
