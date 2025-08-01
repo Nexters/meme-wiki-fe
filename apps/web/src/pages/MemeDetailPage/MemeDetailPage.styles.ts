@@ -3,136 +3,108 @@ import styled from '@emotion/styled';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  overflow-y: auto;
+  background-color: ${({ theme }) => theme.palette.gray['gray-10']};
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ scrollProgress: number }>`
   width: 100%;
-  height: 487.5px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: ${({ scrollProgress }) => Math.max(200, 400 - scrollProgress)}px;
+  padding: 14px;
+  transition: height 0.1s linear;
+  background-color: ${({ theme }) => theme.palette.gray['gray-10']};
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
 `;
 
-const ShareButton = styled.button`
+const ShareButton = styled.button<{ scrollProgress: number }>`
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: ${({ theme }) => theme.palette.common.black};
-  color: ${({ theme }) => theme.palette.common.white};
+  gap: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
   left: 50%;
-  bottom: 20px;
   transform: translateX(-50%);
-  border: none;
-  padding: 12px 24px;
-  border-radius: 34px;
+  bottom: 26px;
+  border: 1px solid ${({ theme }) => theme.palette.common.white};
+  padding: ${({ scrollProgress }) =>
+    scrollProgress > 50 ? '10px' : '10px 16px'};
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: ${({ theme }) => theme.palette.common.white};
+  transition: all 0.1s linear;
 `;
 
-const ShareButtonText = styled.span`
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 400;
-  color: #f5f5f5;
+const ShareButtonText = styled.span<{ scrollProgress: number }>`
+  ${({ theme }) => theme.typography.body.body1};
+  color: ${({ theme }) => theme.palette.common.white};
+  opacity: ${({ scrollProgress }) => Math.max(0, 1 - scrollProgress / 50)};
+  max-width: ${({ scrollProgress }) => (scrollProgress > 50 ? '0' : '100px')};
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.1s linear;
 `;
 
 const ContentContainer = styled.div`
-  padding: 20px;
-  background-color: #ffffff;
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-`;
-
-const CategoryTitle = styled.h2`
-  font-size: 14px;
-  color: #434343;
-  margin-bottom: 10px;
-`;
-
-const HashtagContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-`;
-
-const Hashtag = styled.span`
-  padding: 8px 16px;
-  background-color: #2c2c2c;
-  color: #f5f5f5;
-  border-radius: 4px;
-`;
-
-const Description = styled.p`
-  font-size: 16px;
-  line-height: 1.5;
+  padding: 20px 14px;
+  background-color: ${({ theme }) => theme.palette.gray['gray-10']};
 `;
 
 const YearBadge = styled.div`
   display: inline-flex;
   align-items: center;
-  padding: 3px 10px;
-  background-color: #f0f0f0;
-  border-radius: 154px;
-  margin-bottom: 8px;
+  padding: 4px 8px;
+  background-color: ${({ theme }) => theme.palette.main['light-blue'][90]};
+  border-radius: 45px;
+  margin-bottom: 10px;
 `;
 
 const YearText = styled.span`
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.85);
-  line-height: 18.82px;
+  ${({ theme }) => theme.typography.body.body1};
+  color: ${({ theme }) => theme.palette.gray['gray-9']};
+  font-family: Galmuri11;
 `;
 
 const Title = styled.h1`
-  font-family: Pretendard;
-  font-size: 28px;
-  font-weight: 700;
-  color: #000000;
-  letter-spacing: -0.392px;
-  line-height: 38.024px;
+  ${({ theme }) => theme.typography.title.display3};
+  color: ${({ theme }) => theme.palette.common.white};
   margin-bottom: 4px;
 `;
 
 const HashTags = styled.div`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 600;
-  color: #000000;
-  letter-spacing: 0.353px;
-  line-height: 28px;
-  margin-bottom: 24px;
+  ${({ theme }) => theme.typography.body.body2};
+  color: ${({ theme }) => theme.palette.common.white};
+  margin-bottom: 30px;
 `;
 
 const SectionTitle = styled.h2`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 600;
-  color: #171719;
-  letter-spacing: 0.203px;
-  line-height: 20.006px;
-  margin-bottom: 4px;
+  ${({ theme }) => theme.typography.title.subhead2};
+  background-color: ${({ theme }) => theme.palette.gray['gray-8']};
+  color: ${({ theme }) => theme.palette.gray['gray-1']};
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: max-content;
+  padding: 4px 10px;
+  border-radius: 6px;
 `;
 
 const SectionText = styled.p`
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 400;
-  color: #171719;
-  letter-spacing: 0.091px;
-  line-height: 26px;
-  margin-bottom: 24px;
+  ${({ theme }) => theme.typography.body['body-long2']};
+  color: ${({ theme }) => theme.palette.gray['gray-4']};
+  margin-bottom: 30px;
 `;
 
 export {
@@ -140,11 +112,6 @@ export {
   ImageContainer,
   Image,
   ContentContainer,
-  TagContainer,
-  CategoryTitle,
-  HashtagContainer,
-  Hashtag,
-  Description,
   ShareButton,
   ShareButtonText,
   YearBadge,
