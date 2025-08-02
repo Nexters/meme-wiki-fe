@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import { ShareIcon, SymbolTwoIcon } from '@/assets/icons';
+import { ShareIcon, SymbolThreeIcon, SymbolTwoIcon } from '@/assets/icons';
 import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
@@ -28,31 +28,36 @@ const MemeDetailPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ container: containerRef });
 
-  const height = useTransform(scrollY, [0, 200], [400, 200]);
+  const height = useTransform(scrollY, [0, 200], [400, 250]);
   const smoothHeight = useSpring(height, {
-    stiffness: 200,
+    stiffness: 100,
     damping: 20,
-    mass: 0.5,
   });
 
-  const textWidth = useTransform(scrollY, [0, 50], [100, 0]);
+  // 공유하기 버튼 애니메이션
+  const buttonWidth = useTransform(scrollY, [0, 50], [116, 44]);
+  const textOpacity = useTransform(scrollY, [0, 30], [1, 0]);
+  const textWidth = useTransform(scrollY, [0, 30], [68, 0]);
+
+  const smoothButtonWidth = useSpring(buttonWidth, {
+    stiffness: 400,
+    damping: 40,
+  });
+
   const smoothTextWidth = useSpring(textWidth, {
-    stiffness: 300,
-    damping: 30,
+    stiffness: 400,
+    damping: 40,
   });
 
-  const padding = useTransform(scrollY, [0, 50], [16, 10]);
-  const smoothPadding = useSpring(padding, {
-    stiffness: 300,
-    damping: 30,
+  const smoothTextOpacity = useSpring(textOpacity, {
+    stiffness: 400,
+    damping: 40,
   });
 
   return (
     <Layout
       layoutStyle={{
         backgroundColor: theme.palette.gray['gray-10'],
-        height: '100vh',
-        overflow: 'hidden',
       }}
     >
       <S.Container ref={containerRef}>
@@ -62,7 +67,9 @@ const MemeDetailPage = () => {
             alt={DUMMY_DATA.success.title}
           />
           <S.ShareButton
-            style={{ padding: smoothPadding }}
+            style={{
+              width: smoothButtonWidth,
+            }}
             onClick={() => {
               nativeBridge.shareMeme({
                 title: DUMMY_DATA.success.title,
@@ -71,7 +78,13 @@ const MemeDetailPage = () => {
             }}
           >
             <ShareIcon width={24} height={24} />
-            <S.ShareButtonText style={{ maxWidth: smoothTextWidth }}>
+            <S.ShareButtonText
+              style={{
+                opacity: smoothTextOpacity,
+                width: smoothTextWidth,
+                overflow: 'hidden',
+              }}
+            >
               공유하기
             </S.ShareButtonText>
           </S.ShareButton>
@@ -86,12 +99,12 @@ const MemeDetailPage = () => {
           </S.HashTags>
           <S.SectionTitle>
             <SymbolTwoIcon width={18} height={18} />
-            용도
+            이럴 때 쓰세요
           </S.SectionTitle>
           <S.SectionText>{DUMMY_DATA.success.usage}</S.SectionText>
           <S.SectionTitle>
-            <SymbolTwoIcon width={18} height={18} />
-            유래
+            <SymbolThreeIcon width={18} height={18} />
+            이렇게 시작됐어요
           </S.SectionTitle>
           <S.SectionText>{DUMMY_DATA.success.origin}</S.SectionText>
         </S.ContentContainer>

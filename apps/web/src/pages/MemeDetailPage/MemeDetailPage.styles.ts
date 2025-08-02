@@ -11,6 +11,7 @@ const Container = styled.div`
   }
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 `;
 
 const ImageContainer = styled(motion.div)`
@@ -18,8 +19,12 @@ const ImageContainer = styled(motion.div)`
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 14px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  overflow: visible;
+  position: relative;
 `;
 
 const Image = styled.img`
@@ -31,29 +36,39 @@ const Image = styled.img`
 
 const ShareButton = styled(motion.button)`
   position: absolute;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 8px;
   background-color: rgba(0, 0, 0, 0.5);
   left: 50%;
   transform: translateX(-50%);
   bottom: 26px;
   border: 1px solid ${({ theme }) => theme.palette.common.white};
   border-radius: 10px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
   cursor: pointer;
   color: ${({ theme }) => theme.palette.common.white};
+  transition: all 0.2s ease;
+  z-index: 20;
+  white-space: nowrap;
 `;
 
 const ShareButtonText = styled(motion.span)`
   ${({ theme }) => theme.typography.body.body1};
   color: ${({ theme }) => theme.palette.common.white};
-  overflow: hidden;
-  white-space: nowrap;
+  display: block;
 `;
 
 const ContentContainer = styled.div`
-  padding: 20px 14px;
+  padding: 0 14px 20px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
+  margin-top: -20px;
+  position: relative;
+  z-index: 20;
+  border-radius: 20px 20px 0 0;
 `;
 
 const YearBadge = styled.div`
