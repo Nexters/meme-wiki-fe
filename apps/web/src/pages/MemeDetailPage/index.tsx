@@ -3,7 +3,7 @@ import { ShareIcon, SymbolThreeIcon, SymbolTwoIcon } from '@/assets/icons';
 import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useScroll, useTransform, useSpring } from 'motion/react';
 
 const DUMMY_DATA = {
@@ -28,31 +28,20 @@ const MemeDetailPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ container: containerRef });
 
-  const height = useTransform(scrollY, [0, 200], [400, 250]);
+  const height = useTransform(scrollY, [0, 60], [400, 175]);
   const smoothHeight = useSpring(height, {
-    stiffness: 100,
-    damping: 20,
+    stiffness: 300,
+    damping: 50,
   });
 
-  // 공유하기 버튼 애니메이션
-  const buttonWidth = useTransform(scrollY, [0, 50], [116, 44]);
-  const textOpacity = useTransform(scrollY, [0, 30], [1, 0]);
-  const textWidth = useTransform(scrollY, [0, 30], [68, 0]);
+  const [isTextVisible, setIsTextVisible] = useState(true);
 
-  const smoothButtonWidth = useSpring(buttonWidth, {
-    stiffness: 400,
-    damping: 40,
-  });
-
-  const smoothTextWidth = useSpring(textWidth, {
-    stiffness: 400,
-    damping: 40,
-  });
-
-  const smoothTextOpacity = useSpring(textOpacity, {
-    stiffness: 400,
-    damping: 40,
-  });
+  useEffect(() => {
+    const unsubscribe = scrollY.on('change', (latest) => {
+      setIsTextVisible(latest < 1);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   return (
     <Layout
@@ -67,9 +56,6 @@ const MemeDetailPage = () => {
             alt={DUMMY_DATA.success.title}
           />
           <S.ShareButton
-            style={{
-              width: smoothButtonWidth,
-            }}
             onClick={() => {
               nativeBridge.shareMeme({
                 title: DUMMY_DATA.success.title,
@@ -78,15 +64,7 @@ const MemeDetailPage = () => {
             }}
           >
             <ShareIcon width={24} height={24} />
-            <S.ShareButtonText
-              style={{
-                opacity: smoothTextOpacity,
-                width: smoothTextWidth,
-                overflow: 'hidden',
-              }}
-            >
-              공유하기
-            </S.ShareButtonText>
+            {isTextVisible && <S.ShareButtonText>공유하기</S.ShareButtonText>}
           </S.ShareButton>
         </S.ImageContainer>
         <S.ContentContainer>
