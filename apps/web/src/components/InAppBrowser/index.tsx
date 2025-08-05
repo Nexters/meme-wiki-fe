@@ -1,5 +1,6 @@
 import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
 import { ReactNode, useEffect } from 'react';
+import * as S from './InAppBrowser.styles';
 
 interface InAppBrowserDetectProps {
   children: ReactNode;
@@ -44,21 +45,21 @@ const InAppBrowserDetect = ({ children }: InAppBrowserDetectProps) => {
     })();
 
     return (
-      <div>
-        <div>
-          <p>{userBrowserName} 인앱브라우저에서는</p>
-          <p>일부 기능 이용이 제한됩니다.</p>
-          <p>외부 브라우저로 이동중입니다...</p>
-          <button
+      <S.Container>
+        <S.Content>
+          <S.Title>{userBrowserName} 인앱브라우저에서는</S.Title>
+          <S.Description>일부 기능 이용이 제한됩니다.</S.Description>
+          <S.Description>외부 브라우저로 이동중입니다...</S.Description>
+          <S.StoreButton
             onClick={(e) => {
               e.preventDefault();
               moveToStore();
             }}
           >
             {storeName}에서 설치하기
-          </button>
-        </div>
-      </div>
+          </S.StoreButton>
+        </S.Content>
+      </S.Container>
     );
   }
 
