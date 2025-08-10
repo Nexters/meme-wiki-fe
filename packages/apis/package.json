@@ -17,8 +17,8 @@
     "axios": "^1.7.7"
   },
   "devDependencies": {
-    "@cllaude99_lib/eslint-config": "workspace:*",
-    "@cllaude99_lib/typescript-config": "workspace:*",
+    "@meme_wiki/eslint-config": "workspace:*",
+    "@meme_wiki/typescript-config": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.57.0",

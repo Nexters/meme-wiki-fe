@@ -1,5 +1,5 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['@cllaude99_lib/eslint-config/index.js'],
+  extends: ['@meme_wiki/eslint-config/index.js'],
 };
