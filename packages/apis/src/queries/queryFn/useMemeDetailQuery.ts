@@ -2,14 +2,26 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchApiData } from '../../utils/fetchApiData';
 import { QUERY_KEY } from '../queryKey';
 
-interface MemeDetailResponse {
+interface MemeDetailSuccessResponse {
   id: number;
   title: string;
-  summary: string;
-  source: string;
-  background: string;
-  image: string;
+  usageContext: string;
+  origin: string;
+  trendPeriod: string;
+  imgUrl: string;
   hashtags: string[];
+}
+
+interface MemeDetailErrorResponse {
+  code: string;
+  message: string;
+  data: string;
+}
+
+interface MemeDetailResponse {
+  resultType: string;
+  success: MemeDetailSuccessResponse;
+  error: MemeDetailErrorResponse;
 }
 
 export const useMemeDetailQuery = (id: string) => {
@@ -18,7 +30,7 @@ export const useMemeDetailQuery = (id: string) => {
     queryFn: () =>
       fetchApiData<MemeDetailResponse>({
         method: 'GET',
-        url: `/api/meme/${id}`,
+        url: `/api/memes/${id}`,
       }),
   });
 };
