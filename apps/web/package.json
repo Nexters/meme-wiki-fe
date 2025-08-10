@@ -26,8 +26,8 @@
     "react-error-boundary": "^4.0.11"
   },
   "devDependencies": {
-    "@cllaude99_lib/eslint-config": "workspace:*",
-    "@cllaude99_lib/typescript-config": "workspace:*",
+    "@meme_wiki/eslint-config": "workspace:*",
+    "@meme_wiki/typescript-config": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^3.1.0",

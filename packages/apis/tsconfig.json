@@ -1,5 +1,5 @@
 {
-  "extends": "@cllaude99_lib/typescript-config/base.json",
+  "extends": "@meme_wiki/typescript-config/base.json",
   "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {

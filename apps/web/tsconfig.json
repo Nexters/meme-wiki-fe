@@ -1,5 +1,5 @@
 {
-  "extends": "@cllaude99_lib/typescript-config/vite.json",
+  "extends": "@meme_wiki/typescript-config/vite.json",
   "include": ["src"],
   "compilerOptions": {
     "jsx": "react-jsx",
