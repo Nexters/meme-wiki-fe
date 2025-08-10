@@ -1,5 +1,5 @@
 {
-  "name": "cllaude99_lib",
+  "name": "meme-wiki",
   "private": true,
   "scripts": {
     "build": "turbo run build",
