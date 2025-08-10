@@ -7,18 +7,30 @@ interface MemeQuizQuestion {
   isRight: boolean;
 }
 
-interface MemeQuizResponse {
+interface MemeQuizSuccessItem {
   title: string;
   summary: string;
   image: string;
   questions: MemeQuizQuestion[];
 }
 
+interface MemeQuizErrorResponse {
+  code: string;
+  message: string;
+  data: string;
+}
+
+interface MemeQuizResponse {
+  resultType: string;
+  success: MemeQuizSuccessItem[];
+  error: MemeQuizErrorResponse;
+}
+
 export const useMemeQuizQuery = () => {
   return useQuery({
     queryKey: QUERY_KEY.MEME_QUIZ(),
     queryFn: () =>
-      fetchApiData<MemeQuizResponse[]>({
+      fetchApiData<MemeQuizResponse>({
         method: 'GET',
         url: '/api/quizzes',
       }),
