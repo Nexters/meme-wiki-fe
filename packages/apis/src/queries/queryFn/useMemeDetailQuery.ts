@@ -30,7 +30,7 @@ export const useMemeDetailQuery = (id: string) => {
     queryFn: () =>
       fetchApiData<MemeDetailResponse>({
         method: 'GET',
-        url: `/api/memes/${id}`,
+        url: `https://api.meme-wiki.net/api/memes/${id}`,
       }),
   });
 };
