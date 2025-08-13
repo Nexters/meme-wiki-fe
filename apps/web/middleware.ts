@@ -7,7 +7,6 @@ export default async function middleware(request: Request) {
   const memeId = url.pathname.split('/').pop();
 
   try {
-    // API에서 밈 데이터를 가져옵니다
     const response = await fetch(
       `https://api.meme-wiki.net/api/memes/${memeId}`,
       {
@@ -18,7 +17,6 @@ export default async function middleware(request: Request) {
     );
 
     if (!response.ok) {
-      // API 응답이 404인 경우 원본 HTML을 반환하여 클라이언트 라우팅이 처리하도록 함
       const res = await fetch(new URL('/', request.url));
       const html = await res.text();
       return new Response(html, {
@@ -31,11 +29,9 @@ export default async function middleware(request: Request) {
 
     const data = await response.json();
 
-    // 원본 HTML을 가져옵니다
     const res = await fetch(new URL('/', request.url));
     const html = await res.text();
 
-    // OG 태그를 동적으로 교체합니다
     const modifiedHtml = html
       .replace(
         /<meta\s+property="og:title"\s+content="[^"]*"[^>]*>/,
@@ -76,7 +72,6 @@ export default async function middleware(request: Request) {
       },
     });
   } catch (error) {
-    // 에러 발생 시 원본 HTML을 반환하여 클라이언트 라우팅이 처리하도록 함
     const res = await fetch(new URL('/', request.url));
     const html = await res.text();
     return new Response(html, {
