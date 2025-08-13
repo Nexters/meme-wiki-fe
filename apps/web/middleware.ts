@@ -1,21 +1,61 @@
 export const config = {
-  matcher: ['/meme/:path*'],
+  matcher: ['/meme/:path*', '/meme/quiz'],
 };
 
 export default async function middleware(request: Request) {
   const url = new URL(request.url);
   const pathSegments = url.pathname.split('/');
-  const memeId = pathSegments[pathSegments.length - 1];
+  const path = pathSegments[2];
 
   // 기본 HTML을 가져옵니다
   const res = await fetch(new URL('/', request.url));
   const html = await res.text();
 
-  // /meme/{id} 형식이 아닌 경우 기본 OG 태그 설정
-  if (
-    pathSegments[1] === 'meme' &&
-    (pathSegments[2] === 'quiz' || !pathSegments[2])
-  ) {
+  // /meme/quiz 경로인 경우 퀴즈 페이지용 OG 태그 설정
+  if (path === 'quiz') {
+    const modifiedHtml = html
+      .replace(
+        /<meta\s+property="og:title"\s+content="[^"]*"[^>]*>/,
+        `<meta property="og:title" content="Meme Wiki - 밈 퀴즈" />`,
+      )
+      .replace(
+        /<meta\s+property="og:description"\s+content="[^"]*"[^>]*>/,
+        `<meta property="og:description" content="재미있는 밈 퀴즈를 풀어보세요!" />`,
+      )
+      .replace(
+        /<meta\s+property="og:image"\s+content="[^"]*"[^>]*>/,
+        `<meta property="og:image" content="https://meme-wiki.net/thumbnail.png" />`,
+      )
+      .replace(
+        /<meta\s+property="og:url"\s+content="[^"]*"[^>]*>/,
+        `<meta property="og:url" content="${url.href}" />`,
+      )
+      .replace(
+        /<meta\s+property="twitter:title"\s+content="[^"]*"[^>]*>/,
+        `<meta property="twitter:title" content="Meme Wiki - 밈 퀴즈" />`,
+      )
+      .replace(
+        /<meta\s+property="twitter:description"\s+content="[^"]*"[^>]*>/,
+        `<meta property="twitter:description" content="재미있는 밈 퀴즈를 풀어보세요!" />`,
+      )
+      .replace(
+        /<meta\s+property="twitter:image"\s+content="[^"]*"[^>]*>/,
+        `<meta property="twitter:image" content="https://meme-wiki.net/thumbnail.png" />`,
+      );
+
+    return new Response(modifiedHtml, {
+      status: 200,
+      headers: {
+        'content-type': 'text/html;charset=UTF-8',
+        'cache-control': 'no-cache, no-store, must-revalidate',
+        pragma: 'no-cache',
+        expires: '0',
+      },
+    });
+  }
+
+  // /meme/{id} 경로인 경우 API 호출하여 OG 태그 설정
+  if (path && path !== 'quiz') {
     const modifiedHtml = html
       .replace(
         /<meta\s+property="og:title"\s+content="[^"]*"[^>]*>/,
@@ -60,7 +100,7 @@ export default async function middleware(request: Request) {
   // /meme/{id} 경로에 대한 처리
   try {
     const response = await fetch(
-      `https://api.meme-wiki.net/api/memes/${memeId}`,
+      `https://api.meme-wiki.net/api/memes/${path}`,
       {
         headers: {
           Accept: 'application/json',
@@ -99,7 +139,7 @@ export default async function middleware(request: Request) {
       )
       .replace(
         /<meta\s+property="og:url"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:url" content="https://meme-wiki.net/meme/${memeId}" />`,
+        `<meta property="og:url" content="https://meme-wiki.net/meme/${path}" />`,
       )
       .replace(
         /<meta\s+property="twitter:title"\s+content="[^"]*"[^>]*>/,
