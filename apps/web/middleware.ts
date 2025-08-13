@@ -18,7 +18,10 @@ export default async function middleware(request: Request) {
     );
 
     if (!response.ok) {
-      return Response.redirect(url.origin, 302);
+      // API 응답이 404인 경우 클라이언트 라우팅으로 처리
+      return new Response(null, {
+        status: 200,
+      });
     }
 
     const data = await response.json();
@@ -68,7 +71,9 @@ export default async function middleware(request: Request) {
       },
     });
   } catch (error) {
-    // 에러 발생 시 기본 페이지로 리다이렉트
-    return Response.redirect(url.origin, 302);
+    // 에러 발생 시 클라이언트 라우팅으로 처리
+    return new Response(null, {
+      status: 200,
+    });
   }
 }
