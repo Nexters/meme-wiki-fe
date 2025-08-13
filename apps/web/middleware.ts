@@ -1,5 +1,5 @@
 export const config = {
-  matcher: ['/meme/:path*', '/meme/quiz'],
+  matcher: ['/meme/:path*'],
 };
 
 export default async function middleware(request: Request) {
@@ -24,7 +24,7 @@ export default async function middleware(request: Request) {
       )
       .replace(
         /<meta\s+property="og:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:image" content="https://meme-wiki.net/thumbnail.png" />`,
+        `<meta property="og:image" content="${url.origin}/thumbnail.png" />`,
       )
       .replace(
         /<meta\s+property="og:url"\s+content="[^"]*"[^>]*>/,
@@ -40,50 +40,7 @@ export default async function middleware(request: Request) {
       )
       .replace(
         /<meta\s+property="twitter:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="twitter:image" content="https://meme-wiki.net/thumbnail.png" />`,
-      );
-
-    return new Response(modifiedHtml, {
-      status: 200,
-      headers: {
-        'content-type': 'text/html;charset=UTF-8',
-        'cache-control': 'no-cache, no-store, must-revalidate',
-        pragma: 'no-cache',
-        expires: '0',
-      },
-    });
-  }
-
-  // /meme/{id} 경로인 경우 API 호출하여 OG 태그 설정
-  if (path && path !== 'quiz') {
-    const modifiedHtml = html
-      .replace(
-        /<meta\s+property="og:title"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:title" content="Meme Wiki - 밈 문화의 모든 것" />`,
-      )
-      .replace(
-        /<meta\s+property="og:description"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:description" content="나만의 밈을 만들고 공유하세요." />`,
-      )
-      .replace(
-        /<meta\s+property="og:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:image" content="https://meme-wiki.net/thumbnail.png" />`,
-      )
-      .replace(
-        /<meta\s+property="og:url"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:url" content="${url.href}" />`,
-      )
-      .replace(
-        /<meta\s+property="twitter:title"\s+content="[^"]*"[^>]*>/,
-        `<meta property="twitter:title" content="Meme Wiki - 밈 문화의 모든 것" />`,
-      )
-      .replace(
-        /<meta\s+property="twitter:description"\s+content="[^"]*"[^>]*>/,
-        `<meta property="twitter:description" content="나만의 밈을 만들고 공유하세요." />`,
-      )
-      .replace(
-        /<meta\s+property="twitter:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="twitter:image" content="https://meme-wiki.net/thumbnail.png" />`,
+        `<meta property="twitter:image" content="${url.origin}/thumbnail.png" />`,
       );
 
     return new Response(modifiedHtml, {
