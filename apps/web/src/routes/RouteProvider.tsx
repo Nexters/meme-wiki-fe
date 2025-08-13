@@ -12,7 +12,6 @@ import APIErrorBoundary from '@/components/ErrorBoundary/APIErrorBoundary';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnKnownErrorBoudary';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import LandingPage from '@/pages/Landing';
 import InAppBrowserDetect from '@/components/InAppBrowser';
 import MemeDetailPage from '@/pages/MemeDetailPage';
 import MemeQuizPage from '@/pages/MemeQuizPage';
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <MemeQuizPage />,
       },
       {
         path: PATH.MEME_DETAIL(),
