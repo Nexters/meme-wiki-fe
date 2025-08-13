@@ -32,7 +32,7 @@ export const useMemeQuizQuery = () => {
     queryFn: () =>
       fetchApiData<MemeQuizResponse>({
         method: 'GET',
-        url: '/api/quizzes',
+        url: 'https://api.meme-wiki.net/api/quizzes',
       }),
   });
 };
