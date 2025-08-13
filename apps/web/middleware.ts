@@ -1,5 +1,10 @@
 export const config = {
-  matcher: '/meme/:path*',
+  matcher: [
+    {
+      source: '/meme/:path*',
+      not: [{ source: '/meme/quiz' }],
+    },
+  ],
 };
 
 export default async function middleware(request: Request) {
