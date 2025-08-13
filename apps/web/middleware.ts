@@ -18,9 +18,14 @@ export default async function middleware(request: Request) {
     );
 
     if (!response.ok) {
-      // API 응답이 404인 경우 클라이언트 라우팅으로 처리
-      return new Response(null, {
+      // API 응답이 404인 경우 원본 HTML을 반환하여 클라이언트 라우팅이 처리하도록 함
+      const res = await fetch(new URL('/', request.url));
+      const html = await res.text();
+      return new Response(html, {
         status: 200,
+        headers: {
+          'content-type': 'text/html;charset=UTF-8',
+        },
       });
     }
 
@@ -71,9 +76,14 @@ export default async function middleware(request: Request) {
       },
     });
   } catch (error) {
-    // 에러 발생 시 클라이언트 라우팅으로 처리
-    return new Response(null, {
+    // 에러 발생 시 원본 HTML을 반환하여 클라이언트 라우팅이 처리하도록 함
+    const res = await fetch(new URL('/', request.url));
+    const html = await res.text();
+    return new Response(html, {
       status: 200,
+      headers: {
+        'content-type': 'text/html;charset=UTF-8',
+      },
     });
   }
 }
