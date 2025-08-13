@@ -1,5 +1,5 @@
 export const config = {
-  matcher: ['/meme/:path*'],
+  matcher: ['/meme/quiz', '/meme/:memeId'],
 };
 
 export default async function middleware(request: Request) {
