@@ -27,7 +27,7 @@ export default async function middleware(request: Request) {
       )
       .replace(
         /<meta\s+property="og:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="og:image" content="https://meme-wiki.net/thumbnail.svg" />`,
+        `<meta property="og:image" content="https://meme-wiki.net/thumbnail.png" />`,
       )
       .replace(
         /<meta\s+property="og:url"\s+content="[^"]*"[^>]*>/,
@@ -43,13 +43,16 @@ export default async function middleware(request: Request) {
       )
       .replace(
         /<meta\s+property="twitter:image"\s+content="[^"]*"[^>]*>/,
-        `<meta property="twitter:image" content="https://meme-wiki.net/thumbnail.svg" />`,
+        `<meta property="twitter:image" content="https://meme-wiki.net/thumbnail.png" />`,
       );
 
     return new Response(modifiedHtml, {
       status: 200,
       headers: {
         'content-type': 'text/html;charset=UTF-8',
+        'cache-control': 'no-cache, no-store, must-revalidate',
+        pragma: 'no-cache',
+        expires: '0',
       },
     });
   }
