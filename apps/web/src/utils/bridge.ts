@@ -7,33 +7,6 @@ import {
   ShareMemeData,
 } from '../types/bridge';
 
-// 개발 환경용 모의 브릿지
-const mockNativeBridge = {
-  postMessage(data: string) {
-    console.log('Mock Android Bridge called with:', JSON.parse(data));
-  },
-};
-
-const mockWebKit = {
-  messageHandlers: {
-    wikiHandler: {
-      postMessage(data: string) {
-        console.log('Mock iOS Bridge called with:', JSON.parse(data));
-      },
-    },
-  },
-};
-
-// 개발 환경에서 모의 브릿지 주입
-if (import.meta.env.DEV) {
-  if (!window.wiki) {
-    window.wiki = mockNativeBridge;
-  }
-  if (!window.webkit) {
-    window.webkit = mockWebKit;
-  }
-}
-
 class NativeBridge {
   private static instance: NativeBridge;
 
