@@ -33,10 +33,9 @@ const BROWSER_PATTERNS: BrowserPattern[] = [
   },
 ];
 
-// 테스트 용 (실제로는 우리의 앱 정보를 사용해야 함)
-const NAVER_APP_INFO = {
-  androidPackage: 'com.nhn.android.search',
-  iosAppId: '393499958',
+const MEMEWIKI_APP_INFO = {
+  androidPackage: 'com.mimu_bird_meme',
+  iosAppId: '6751053974',
 };
 
 const useInAppBrowserDetect = () => {
@@ -64,14 +63,14 @@ const useInAppBrowserDetect = () => {
 
   const moveToStore = useCallback(() => {
     if (isAndroid) {
-      window.location.href = `market://details?id=${NAVER_APP_INFO.androidPackage}`;
+      window.location.href = `market://details?id=${MEMEWIKI_APP_INFO.androidPackage}`;
     } else if (isIOS) {
-      window.location.href = `itms-apps://itunes.apple.com/app/id${NAVER_APP_INFO.iosAppId}`;
+      window.location.href = `itms-apps://itunes.apple.com/app/id${MEMEWIKI_APP_INFO.iosAppId}`;
     } else {
       // 폴백 URL (웹 버전)
       window.location.href = isAndroid
-        ? `https://play.google.com/store/apps/details?id=${NAVER_APP_INFO.androidPackage}`
-        : `https://apps.apple.com/app/id${NAVER_APP_INFO.iosAppId}`;
+        ? `https://play.google.com/store/apps/details?id=${MEMEWIKI_APP_INFO.androidPackage}`
+        : `https://apps.apple.com/app/id${MEMEWIKI_APP_INFO.iosAppId}`;
     }
   }, [isAndroid, isIOS]);
 
