@@ -12,8 +12,7 @@ const MemeQuizPage = () => {
       resultType: 'SUCCESS',
       success: [
         {
-          title: '밈 퀴즈 1',
-          summary: '인터넷 밈 문화에 대한 퀴즈입니다.',
+          question: '인터넷 밈 문화에 대한 퀴즈입니다.',
           image: 'https://i.imgur.com/81qyN1y.jpg',
           questions: [
             {
@@ -27,8 +26,7 @@ const MemeQuizPage = () => {
           ],
         },
         {
-          title: '밈 퀴즈 2',
-          summary: '최근 유행하는 밈에 대한 퀴즈입니다.',
+          question: '최근 유행하는 밈에 대한 퀴즈입니다.',
           image: 'https://i.imgur.com/KFEHWEE.jpg',
           questions: [
             {
@@ -42,8 +40,7 @@ const MemeQuizPage = () => {
           ],
         },
         {
-          title: '밈 퀴즈 3',
-          summary: '고전 밈에 대한 퀴즈입니다.',
+          question: '고전 밈에 대한 퀴즈입니다.',
           image: 'https://i.imgur.com/RP5tKYX.jpg',
           questions: [
             {
@@ -57,8 +54,7 @@ const MemeQuizPage = () => {
           ],
         },
         {
-          title: '밈 퀴즈 4',
-          summary: '최근 유행하는 밈에 대한 퀴즈입니다.',
+          question: '최근 유행하는 밈에 대한 퀴즈입니다.',
           image: 'https://i.imgur.com/RP5tKYX.jpg',
           questions: [
             {

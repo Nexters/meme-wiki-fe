@@ -6,8 +6,7 @@ interface Question {
 }
 
 interface QuizItem {
-  title: string;
-  summary: string;
+  question: string;
   image: string;
   questions: Question[];
 }
@@ -36,9 +35,8 @@ const QuizStep = ({
           <S.BackButton onClick={onBefore}>← 이전</S.BackButton>
         </S.NavigationContainer>
       )}
-      <S.Title>{quiz.title}</S.Title>
-      <S.Summary>{quiz.summary}</S.Summary>
-      <S.QuizImage src={quiz.image} alt={quiz.title} />
+      <S.Title>{quiz.question}</S.Title>
+      <S.QuizImage src={quiz.image} alt={quiz.question} />
       <S.QuestionContainer>
         {quiz.questions.map((question, index) => {
           return (
