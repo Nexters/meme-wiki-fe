@@ -52,6 +52,10 @@ const ActionButton = styled.button`
   padding: 14px;
   ${({ theme }) => theme.typography.title.subhead2};
   color: ${({ theme }) => theme.palette.common.white};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.gray['gray-8']};
+  }
 `;
 
 const ContentContainer = styled.div`
