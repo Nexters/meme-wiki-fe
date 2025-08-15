@@ -12,8 +12,8 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled(motion.div)`
-  position: sticky;
-  top: 0;
+  /* position: sticky;
+  top: 0; */
   padding: 14px;
 `;
 

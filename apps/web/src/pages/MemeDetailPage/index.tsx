@@ -8,7 +8,6 @@ import {
 import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
-import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMemeDetailQuery } from '@meme_wiki/apis';
 
@@ -17,7 +16,6 @@ const MemeDetailPage = () => {
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
 
   const theme = useTheme();
-  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <Layout
@@ -25,7 +23,7 @@ const MemeDetailPage = () => {
         backgroundColor: theme.palette.gray['gray-10'],
       }}
     >
-      <S.Container ref={containerRef}>
+      <S.Container>
         <S.ImageContainer>
           <S.Image
             src={memeDetail?.success.imgUrl}
@@ -61,11 +59,16 @@ const MemeDetailPage = () => {
             });
           }}
         >
-          <ShareIcon width={24} height={24} />
-          공유하기
+          <ShareIcon />
+          <span>공유하기</span>
         </S.ActionButton>
-        <S.ActionButton>
-          <MemeDesignPenIcon width={24} height={24} />밈 꾸미기
+        <S.ActionButton
+          onClick={() => {
+            alert('밈 꾸미기');
+          }}
+        >
+          <MemeDesignPenIcon />
+          <span>밈 꾸미기</span>
         </S.ActionButton>
       </S.ButtonContainer>
     </Layout>
