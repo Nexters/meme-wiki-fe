@@ -41,6 +41,6 @@ declare global {
         };
       };
     };
-    onNativeEvent?: (type: string) => void;
+    onNativeEntered?: (type: string) => void;
   }
 }

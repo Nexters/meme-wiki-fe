@@ -20,7 +20,7 @@ const MemeDetailPage = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    window.onNativeEvent = (type: string) => {
+    window.onNativeEntered = (type: string) => {
       if (type === COMMAND_TYPE.APP_ENTERED) {
         alert('앱 접속!');
       } else {
@@ -31,7 +31,7 @@ const MemeDetailPage = () => {
     nativeBridge.webEntered();
 
     return () => {
-      window.onNativeEvent = undefined;
+      window.onNativeEntered = undefined;
     };
   }, []);
 
