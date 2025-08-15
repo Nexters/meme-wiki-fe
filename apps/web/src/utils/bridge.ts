@@ -3,6 +3,7 @@ import {
   COMMAND_TYPE,
   CommandDataMap,
   CommandType,
+  CustomMemeData,
   ShareMemeData,
 } from '../types/bridge';
 
@@ -90,6 +91,11 @@ class NativeBridge {
   // 밈 공유하기
   shareMeme(data: ShareMemeData) {
     this.sendCommand(COMMAND_TYPE.SHARE_MEME, data);
+  }
+
+  // 밈 꾸미기
+  customMeme(data: CustomMemeData) {
+    this.sendCommand(COMMAND_TYPE.CUSTOM_MEME, data);
   }
 }
 

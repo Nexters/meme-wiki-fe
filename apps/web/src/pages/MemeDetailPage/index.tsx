@@ -64,7 +64,10 @@ const MemeDetailPage = () => {
         </S.ActionButton>
         <S.ActionButton
           onClick={() => {
-            alert('밈 꾸미기');
+            nativeBridge.customMeme({
+              title: memeDetail?.success.title ?? '',
+              image: memeDetail?.success.imgUrl ?? '',
+            });
           }}
         >
           <MemeDesignPenIcon />
