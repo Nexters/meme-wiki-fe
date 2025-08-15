@@ -41,6 +41,6 @@ declare global {
         };
       };
     };
-    onNativeEntered?: (type: string) => void;
+    onNativeEntered?: (command: BridgeCommand<CommandType>) => void;
   }
 }

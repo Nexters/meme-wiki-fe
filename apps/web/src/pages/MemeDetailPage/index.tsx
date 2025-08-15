@@ -11,7 +11,7 @@ import { useTheme } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useMemeDetailQuery } from '@meme_wiki/apis';
 import { useEffect } from 'react';
-import { COMMAND_TYPE } from '@/types/bridge';
+import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 
 const MemeDetailPage = () => {
   const { memeId } = useParams();
@@ -20,8 +20,8 @@ const MemeDetailPage = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    window.onNativeEntered = (type: string) => {
-      if (type === COMMAND_TYPE.APP_ENTERED) {
+    window.onNativeEntered = (command: BridgeCommand<CommandType>) => {
+      if (command.type === COMMAND_TYPE.APP_ENTERED) {
         alert('앱 접속!');
       } else {
         alert('웹 접속!');
