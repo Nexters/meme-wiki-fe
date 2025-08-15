@@ -8,8 +8,7 @@ interface MemeQuizQuestion {
 }
 
 interface MemeQuizSuccessItem {
-  title: string;
-  summary: string;
+  question: string;
   image: string;
   questions: MemeQuizQuestion[];
 }
