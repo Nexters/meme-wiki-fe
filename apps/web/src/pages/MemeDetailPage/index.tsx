@@ -10,12 +10,30 @@ import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useMemeDetailQuery } from '@meme_wiki/apis';
+import { useEffect } from 'react';
+import { COMMAND_TYPE } from '@/types/bridge';
 
 const MemeDetailPage = () => {
   const { memeId } = useParams();
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
 
   const theme = useTheme();
+
+  useEffect(() => {
+    window.onNativeEvent = (type: string) => {
+      if (type === COMMAND_TYPE.APP_ENTERED) {
+        alert('앱 접속!');
+      } else {
+        alert('웹 접속!');
+      }
+    };
+
+    nativeBridge.webEntered();
+
+    return () => {
+      window.onNativeEvent = undefined;
+    };
+  }, []);
 
   return (
     <Layout

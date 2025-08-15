@@ -1,6 +1,8 @@
 export const COMMAND_TYPE = {
   SHARE_MEME: 'SHARE_MEME',
   CUSTOM_MEME: 'CUSTOM_MEME',
+  WEB_ENTERED: 'WEB_ENTERED',
+  APP_ENTERED: 'APP_ENTERED',
 } as const;
 
 export type CommandType = (typeof COMMAND_TYPE)[keyof typeof COMMAND_TYPE];
@@ -18,6 +20,8 @@ export interface CustomMemeData {
 export type CommandDataMap = {
   [COMMAND_TYPE.SHARE_MEME]: ShareMemeData;
   [COMMAND_TYPE.CUSTOM_MEME]: CustomMemeData;
+  [COMMAND_TYPE.WEB_ENTERED]: null;
+  [COMMAND_TYPE.APP_ENTERED]: null;
 };
 
 export interface BridgeCommand<T extends CommandType> {
@@ -37,5 +41,6 @@ declare global {
         };
       };
     };
+    onNativeEvent?: (type: string) => void;
   }
 }

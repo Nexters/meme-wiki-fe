@@ -97,6 +97,11 @@ class NativeBridge {
   customMeme(data: CustomMemeData) {
     this.sendCommand(COMMAND_TYPE.CUSTOM_MEME, data);
   }
+
+  // 웹 페이지 진입
+  webEntered() {
+    this.sendCommand(COMMAND_TYPE.WEB_ENTERED);
+  }
 }
 
 export const nativeBridge = NativeBridge.getInstance();
