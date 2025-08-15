@@ -8,6 +8,7 @@ const Container = styled.div`
   }
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding-bottom: 100px;
 `;
 
 const ImageContainer = styled(motion.div)`
@@ -23,24 +24,33 @@ const Image = styled.img`
   border-radius: 12px;
 `;
 
-const ShareButton = styled(motion.button)`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background-color: rgba(0, 0, 0, 0.5);
+const ButtonContainer = styled.div`
+  position: fixed;
+  max-width: 425px;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 26px;
-  border: 1px solid ${({ theme }) => theme.palette.common.white};
-  border-radius: 10px;
-  cursor: pointer;
-  color: ${({ theme }) => theme.palette.common.white};
-  padding: 10px 12px;
+  bottom: 0;
+  width: 100%;
+  padding: 24px 14px;
+  background-color: ${({ theme }) => theme.palette.gray['gray-10']};
+  border-top: 1px solid ${({ theme }) => theme.palette.gray['gray-9']};
+  display: flex;
+  gap: 10px;
+  z-index: 10;
 `;
 
-const ShareButtonText = styled(motion.span)`
-  ${({ theme }) => theme.typography.body.body1};
+const ActionButton = styled.button`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: ${({ theme }) => theme.palette.gray['gray-9']};
+  border: 1px solid ${({ theme }) => theme.palette.gray['gray-8']};
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 14px;
+  ${({ theme }) => theme.typography.title.subhead2};
   color: ${({ theme }) => theme.palette.common.white};
 `;
 
@@ -99,8 +109,8 @@ export {
   ImageContainer,
   Image,
   ContentContainer,
-  ShareButton,
-  ShareButtonText,
+  ButtonContainer,
+  ActionButton,
   YearBadge,
   YearText,
   Title,

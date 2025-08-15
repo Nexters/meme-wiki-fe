@@ -1,10 +1,14 @@
 import Layout from '@/components/Layout';
-import { ShareIcon, SymbolThreeIcon, SymbolTwoIcon } from '@/assets/icons';
+import {
+  MemeDesignPenIcon,
+  ShareIcon,
+  SymbolThreeIcon,
+  SymbolTwoIcon,
+} from '@/assets/icons';
 import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
-import { useRef, useState, useEffect } from 'react';
-import { useScroll, useTransform, useSpring } from 'motion/react';
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMemeDetailQuery } from '@meme_wiki/apis';
 
@@ -14,22 +18,6 @@ const MemeDetailPage = () => {
 
   const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({ container: containerRef });
-
-  const height = useTransform(scrollY, [0, 60], [400, 175]);
-  const smoothHeight = useSpring(height, {
-    stiffness: 300,
-    damping: 50,
-  });
-
-  const [isTextVisible, setIsTextVisible] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = scrollY.on('change', (latest) => {
-      setIsTextVisible(latest < 1);
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
 
   return (
     <Layout
@@ -38,22 +26,11 @@ const MemeDetailPage = () => {
       }}
     >
       <S.Container ref={containerRef}>
-        <S.ImageContainer style={{ height: smoothHeight }}>
+        <S.ImageContainer>
           <S.Image
             src={memeDetail?.success.imgUrl}
             alt={memeDetail?.success.title}
           />
-          <S.ShareButton
-            onClick={() => {
-              nativeBridge.shareMeme({
-                title: memeDetail?.success.title ?? '',
-                image: memeDetail?.success.imgUrl ?? '',
-              });
-            }}
-          >
-            <ShareIcon width={24} height={24} />
-            {isTextVisible && <S.ShareButtonText>공유하기</S.ShareButtonText>}
-          </S.ShareButton>
         </S.ImageContainer>
         <S.ContentContainer>
           <S.YearBadge>
@@ -75,6 +52,22 @@ const MemeDetailPage = () => {
           <S.SectionText>{memeDetail?.success.origin}</S.SectionText>
         </S.ContentContainer>
       </S.Container>
+      <S.ButtonContainer>
+        <S.ActionButton
+          onClick={() => {
+            nativeBridge.shareMeme({
+              title: memeDetail?.success.title ?? '',
+              image: memeDetail?.success.imgUrl ?? '',
+            });
+          }}
+        >
+          <ShareIcon width={24} height={24} />
+          공유하기
+        </S.ActionButton>
+        <S.ActionButton>
+          <MemeDesignPenIcon width={24} height={24} />밈 꾸미기
+        </S.ActionButton>
+      </S.ButtonContainer>
     </Layout>
   );
 };
