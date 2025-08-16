@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { LinkCopiedIcon } from '@/assets/icons';
 import MemeQuizResultBackground from '@/assets/images/MemeQuizResultBackground.png';
@@ -20,6 +20,7 @@ import {
   ToastText,
 } from './MemeQuizResult.styles';
 import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
+import { useMemeQuizMutation } from '@meme_wiki/apis';
 
 interface MemeQuizResultPageProps {
   rightCount: number;
@@ -28,6 +29,15 @@ interface MemeQuizResultPageProps {
 const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
   const { moveToStore } = useInAppBrowserDetect();
   const [showToast, setShowToast] = useState(false);
+  const { mutate: quizResult } = useMemeQuizMutation();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      quizResult({ rightCount });
+      isFirstRender.current = false;
+    }
+  }, [rightCount, quizResult]);
 
   return (
     <Container>
