@@ -19,12 +19,14 @@ import {
   Toast,
   ToastText,
 } from './MemeQuizResult.styles';
+import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
 
 interface MemeQuizResultPageProps {
   rightCount: number;
 }
 
 const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
+  const { moveToStore } = useInAppBrowserDetect();
   const [showToast, setShowToast] = useState(false);
 
   return (
@@ -70,13 +72,7 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
             링크 복사하고 공유하기
           </ShareButton>
         </ToastContainer>
-        <MoreButton
-          onClick={() => {
-            alert('더 많은 밈 보러가기');
-          }}
-        >
-          더 많은 밈 보러가기
-        </MoreButton>
+        <MoreButton onClick={moveToStore}>더 많은 밈 보러가기</MoreButton>
       </ButtonContainer>
     </Container>
   );
