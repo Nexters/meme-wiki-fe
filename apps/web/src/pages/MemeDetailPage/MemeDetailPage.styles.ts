@@ -31,7 +31,7 @@ const ButtonContainer = styled.div`
   transform: translateX(-50%);
   bottom: 0;
   width: 100%;
-  padding: 12px 14px 32px;
+  padding: 12px 14px 40px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
   border-top: 1px solid ${({ theme }) => theme.palette.gray['gray-9']};
   display: flex;
