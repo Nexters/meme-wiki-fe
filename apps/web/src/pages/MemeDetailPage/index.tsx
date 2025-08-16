@@ -16,6 +16,7 @@ import {
 } from '@meme_wiki/apis';
 import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
+import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
 
 // 전역에서 함수 정의
 if (typeof window !== 'undefined') {
@@ -32,6 +33,7 @@ if (typeof window !== 'undefined') {
 const MemeDetailPage = () => {
   const [isWebview, setIsWebview] = useState(false);
   const { memeId } = useParams();
+  const { moveToStore } = useInAppBrowserDetect();
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
   const { mutate: shareMeme } = useShareMemeMutation();
   const { mutate: customMeme } = useMemeCustomMutation();
@@ -107,7 +109,7 @@ const MemeDetailPage = () => {
                 image: memeDetail?.success.imgUrl ?? '',
               });
             } else {
-              alert('밈 꾸미기 클릭!');
+              moveToStore();
             }
           }}
         >
