@@ -31,7 +31,8 @@ const MemeShareSheet = ({
 
   const handleKakaoShare = () => {
     if (isWebview) {
-      onShareNative();
+      const kakaoShareUrl = `kakaolink://send?text=${encodeURIComponent(title)}&image=${encodeURIComponent(imageUrl)}&url=${encodeURIComponent(window.location.href)}`;
+      window.location.href = kakaoShareUrl;
       return;
     }
 
