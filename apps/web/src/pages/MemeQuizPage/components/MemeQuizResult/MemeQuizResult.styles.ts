@@ -1,104 +1,140 @@
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  gap: 20px;
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ theme }) => theme.palette.common.black};
 `;
 
-const NavigationContainer = styled.div`
+const ResultCard = styled.div`
+  position: relative;
+  width: calc(100% - 40px);
+  max-width: ${({ theme }) => theme.breakpoints.mobile};
+  height: 481px;
+  margin-top: 108px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.palette.main.pink[50]},
+    ${({ theme }) => theme.palette.main['red-orange'][90]}
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+`;
+
+const BackgroundImage = styled.img`
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
-const BackButton = styled.button`
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
-  background-color: ${({ theme }) => theme.palette.common.white};
+const ContentWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Badge = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  background-color: ${({ theme }) => theme.palette.common.black};
+  border-radius: 50px;
+  margin-top: 150px;
+`;
+
+const BadgeText = styled.span`
+  ${({ theme }) => theme.typography.title.subhead2};
+  color: ${({ theme }) => theme.palette.main.pink[80]};
+`;
+
+const ResultTextContainer = styled.div`
+  width: 100%;
+  padding: 0 24px;
+  margin-top: 14px;
+  text-align: center;
+`;
+
+const ResultTitle = styled.h1`
+  ${({ theme }) => theme.typography.title.display2};
   color: ${({ theme }) => theme.palette.common.black};
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.gray['gray-1']};
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  margin-bottom: 6px;
 `;
 
-const QuizImage = styled.img`
+const ResultSubtitle = styled.p`
+  ${({ theme }) => theme.typography.title.subhead1};
+  color: ${({ theme }) => theme.palette.common.black};
+`;
+
+const ButtonContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 8px;
-`;
-
-const Title = styled.h1`
-  ${({ theme }) => theme.typography.title['subhead-long1']};
-  color: ${({ theme }) => theme.palette.gray['gray-9']};
-  text-align: center;
-`;
-
-const Summary = styled.p`
-  ${({ theme }) => theme.typography.body['body-long1']};
-  color: ${({ theme }) => theme.palette.gray['gray-7']};
-  text-align: center;
-`;
-
-const QuestionContainer = styled.div`
+  max-width: ${({ theme }) => theme.breakpoints.mobile};
+  padding: 0 20px 40px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 500px;
+  gap: 14px;
 `;
 
-const Button = styled.button<{ isSelected?: boolean }>`
+const ShareButton = styled.button`
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
-  background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.main.blue[50] : theme.palette.common.white};
-  color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.common.white : theme.palette.common.black};
+  height: 52px;
+  background-color: ${({ theme }) => theme.palette.gray['gray-10']};
+  border: 1px solid ${({ theme }) => theme.palette.gray['gray-8']};
+  border-radius: 10px;
+  ${({ theme }) => theme.typography.title.subhead1};
+  color: ${({ theme }) => theme.palette.common.white};
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme, isSelected }) =>
-      isSelected ? theme.palette.main.blue[40] : theme.palette.gray['gray-1']};
+    background-color: ${({ theme }) => theme.palette.gray['gray-8']};
   }
 `;
 
-const ResultContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
+const MoreButton = styled.button`
+  width: 100%;
+  height: 52px;
+  background-color: ${({ theme }) => theme.palette.main.pink[50]};
+  border: none;
+  border-radius: 10px;
+  ${({ theme }) => theme.typography.title.subhead1};
+  color: ${({ theme }) => theme.palette.common.white};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.main.pink[40]};
+  }
 `;
 
 export {
   Container,
-  NavigationContainer,
-  BackButton,
-  QuizImage,
-  Title,
-  Summary,
-  QuestionContainer,
-  Button,
-  ResultContainer,
+  ResultCard,
+  BackgroundImage,
+  ContentWrapper,
+  Badge,
+  BadgeText,
+  ResultTextContainer,
+  ResultTitle,
+  ResultSubtitle,
+  ButtonContainer,
+  ShareButton,
+  MoreButton,
 };
