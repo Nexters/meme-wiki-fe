@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'motion/react';
 
 const Container = styled.div`
   position: relative;
@@ -124,6 +125,31 @@ const MoreButton = styled.button`
   }
 `;
 
+const ToastContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Toast = styled(motion.div)`
+  position: absolute;
+  bottom: calc(100% + 14px);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 12px;
+  background-color: ${({ theme }) => theme.palette.gray['gray-1']};
+  border-radius: 50px;
+  white-space: nowrap;
+`;
+
+const ToastText = styled.span`
+  ${({ theme }) => theme.typography.title.subhead2};
+  color: ${({ theme }) => theme.palette.gray['gray-8']};
+`;
+
 export {
   Container,
   ResultCard,
@@ -137,4 +163,7 @@ export {
   ButtonContainer,
   ShareButton,
   MoreButton,
+  ToastContainer,
+  Toast,
+  ToastText,
 };
