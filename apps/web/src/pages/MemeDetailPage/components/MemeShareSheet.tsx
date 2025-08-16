@@ -52,7 +52,7 @@ const MemeShareSheet = ({
         objectType: 'feed',
         content: {
           title,
-          description: '밈위키에서 더 많은 밈을 확인해보세요!',
+          description: '미미키에서 더 많은 밈을 확인해보세요!',
           imageUrl,
           link: {
             mobileWebUrl: window.location.href,
