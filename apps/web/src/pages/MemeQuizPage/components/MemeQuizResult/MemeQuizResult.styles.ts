@@ -16,7 +16,7 @@ const ResultCard = styled.div`
   width: calc(100% - 40px);
   max-width: ${({ theme }) => theme.breakpoints.mobile};
   height: 481px;
-  margin-top: 108px;
+  margin-top: 70px;
   border-radius: 14px;
   background: linear-gradient(
     135deg,
