@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
+import MemeShareSheet from './components/MemeShareSheet';
 
 // 전역에서 함수 정의
 if (typeof window !== 'undefined') {
@@ -37,6 +38,7 @@ const MemeDetailPage = () => {
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
   const { mutate: shareMeme } = useShareMemeMutation();
   const { mutate: customMeme } = useMemeCustomMutation();
+  const [shareSheetOpen, setShareSheetOpen] = useState(false);
 
   const theme = useTheme();
 
@@ -118,20 +120,27 @@ const MemeDetailPage = () => {
             // 밈 공유하기 mutation
             shareMeme({ id: memeId! });
 
-            if (isWebview) {
-              nativeBridge.shareMeme({
-                title: memeDetail?.success.title ?? '',
-                image: memeDetail?.success.imgUrl ?? '',
-              });
-            } else {
-              alert('밈 공유하기 클릭!');
-            }
+            // 공유 시트 열기
+            setShareSheetOpen(true);
           }}
         >
           <ShareIcon />
           <span>공유하기</span>
         </S.ActionButton>
       </S.ButtonContainer>
+      <MemeShareSheet
+        isOpen={shareSheetOpen}
+        onClose={() => setShareSheetOpen(false)}
+        title={memeDetail?.success.title ?? ''}
+        imageUrl={memeDetail?.success.imgUrl ?? ''}
+        isWebview={isWebview}
+        onShareNative={() => {
+          nativeBridge.shareMeme({
+            title: memeDetail?.success.title ?? '',
+            image: memeDetail?.success.imgUrl ?? '',
+          });
+        }}
+      />
     </Layout>
   );
 };
