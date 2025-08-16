@@ -30,6 +30,11 @@ const MemeShareSheet = ({
   }, []);
 
   const handleKakaoShare = () => {
+    if (isWebview) {
+      window.location.href = 'kakaotalk://';
+      return;
+    }
+
     if (!window.Kakao?.isInitialized()) {
       window.Kakao?.init('05ba74b5a769929cd086247c874b60e4');
     }
