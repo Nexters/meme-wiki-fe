@@ -31,7 +31,7 @@ const MemeShareSheet = ({
 
   const handleKakaoShare = () => {
     if (isWebview) {
-      window.location.href = 'kakaotalk://';
+      onShareNative();
       return;
     }
 
