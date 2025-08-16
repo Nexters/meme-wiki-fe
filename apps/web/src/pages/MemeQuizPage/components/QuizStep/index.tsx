@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { LinkCopiedIcon } from '@/assets/icons';
+import QuizResultModal from './QuizResultModal';
 import {
   Container,
   Content,
@@ -27,19 +28,13 @@ interface QuizStepProps {
     }[];
   };
   currentStep: string;
-  isFirstQuiz: boolean;
-  onBefore: () => void;
   onAnswer: (currentStep: string, isRight: boolean) => void;
   currentAnswer?: boolean;
 }
 
-const QuizStep = ({
-  quiz,
-  currentStep,
-
-  onAnswer,
-}: QuizStepProps) => {
+const QuizStep = ({ quiz, currentStep, onAnswer }: QuizStepProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showResultModal, setShowResultModal] = useState(false);
 
   const handleAnswerSelect = (index: number) => {
     setSelectedAnswer(index);
@@ -47,8 +42,20 @@ const QuizStep = ({
 
   const handleNext = () => {
     if (selectedAnswer !== null) {
-      onAnswer(currentStep, quiz.questions[selectedAnswer].isRight);
+      setShowResultModal(true);
     }
+  };
+
+  const handleNextQuiz = () => {
+    if (selectedAnswer !== null) {
+      onAnswer(currentStep, quiz.questions[selectedAnswer].isRight);
+      setShowResultModal(false);
+      setSelectedAnswer(null);
+    }
+  };
+
+  const getCorrectAnswer = () => {
+    return quiz.questions.find((q) => q.isRight)?.message || '';
   };
 
   const stepNumber = currentStep.replace('quiz', '');
@@ -93,6 +100,14 @@ const QuizStep = ({
           다음
         </BottomButton>
       </BottomContainer>
+
+      {showResultModal && selectedAnswer !== null && (
+        <QuizResultModal
+          isCorrect={quiz.questions[selectedAnswer].isRight}
+          correctAnswer={getCorrectAnswer()}
+          onNext={handleNextQuiz}
+        />
+      )}
     </Container>
   );
 };

@@ -66,7 +66,7 @@ const MemeQuizPage = () => {
     };
   }, [quizData]);
 
-  const { Funnel, step, setStep } = useFunnel<keyof typeof quizSteps>(
+  const { Funnel, setStep } = useFunnel<keyof typeof quizSteps>(
     quizSteps[stepsArray[0]],
   );
 
@@ -93,14 +93,7 @@ const MemeQuizPage = () => {
                   <QuizStep
                     quiz={quiz}
                     currentStep={`quiz${index + 1}`}
-                    isFirstQuiz={stepsArray.indexOf(step) === 0}
                     currentAnswer={stepAnswers[`quiz${index + 1}`]}
-                    onBefore={() => {
-                      const currentStepIndex = stepsArray.indexOf(step);
-                      if (currentStepIndex <= 0) return;
-
-                      onNext(stepsArray[currentStepIndex - 1]);
-                    }}
                     onAnswer={(currentStep, isRight) => {
                       setStepAnswers((prev) => ({
                         ...prev,
