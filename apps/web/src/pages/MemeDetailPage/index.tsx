@@ -10,10 +10,11 @@ import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useMemeDetailQuery } from '@meme_wiki/apis';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 
 const MemeDetailPage = () => {
+  const [isWebview, setIsWebview] = useState(false);
   const { memeId } = useParams();
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
 
@@ -22,9 +23,9 @@ const MemeDetailPage = () => {
   useEffect(() => {
     window.onNativeEntered = (command: BridgeCommand<CommandType>) => {
       if (command.type === COMMAND_TYPE.APP_ENTERED) {
-        alert('앱 접속!');
+        setIsWebview(true);
       } else {
-        alert('웹 접속!');
+        setIsWebview(false);
       }
     };
 
@@ -71,10 +72,14 @@ const MemeDetailPage = () => {
       <S.ButtonContainer>
         <S.ActionButton
           onClick={() => {
-            nativeBridge.shareMeme({
-              title: memeDetail?.success.title ?? '',
-              image: memeDetail?.success.imgUrl ?? '',
-            });
+            if (isWebview) {
+              nativeBridge.shareMeme({
+                title: memeDetail?.success.title ?? '',
+                image: memeDetail?.success.imgUrl ?? '',
+              });
+            } else {
+              alert('밈 공유하기 클릭!');
+            }
           }}
         >
           <ShareIcon />
