@@ -13,6 +13,18 @@ import { useMemeDetailQuery } from '@meme_wiki/apis';
 import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 
+// 전역에서 함수 정의
+if (typeof window !== 'undefined') {
+  window.onNativeEntered = (command: BridgeCommand<CommandType>) => {
+    // MemeDetailPage 컴포넌트의 setIsWebview를 호출하기 위한 커스텀 이벤트
+    window.dispatchEvent(
+      new CustomEvent('webviewStateChange', {
+        detail: command.type === COMMAND_TYPE.APP_ENTERED,
+      }),
+    );
+  };
+}
+
 const MemeDetailPage = () => {
   const [isWebview, setIsWebview] = useState(false);
   const { memeId } = useParams();
@@ -21,18 +33,25 @@ const MemeDetailPage = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    window.onNativeEntered = (command: BridgeCommand<CommandType>) => {
-      if (command.type === COMMAND_TYPE.APP_ENTERED) {
-        setIsWebview(true);
-      } else {
-        setIsWebview(false);
-      }
+    // 웹뷰 상태 변경 이벤트 리스너
+    const handleWebviewState = (event: CustomEvent<boolean>) => {
+      setIsWebview(event.detail);
     };
 
+    // 이벤트 리스너 등록
+    window.addEventListener(
+      'webviewStateChange',
+      handleWebviewState as EventListener,
+    );
+
+    // 웹뷰 진입 알림
     nativeBridge.webEntered();
 
     return () => {
-      window.onNativeEntered = undefined;
+      window.removeEventListener(
+        'webviewStateChange',
+        handleWebviewState as EventListener,
+      );
     };
   }, []);
 
