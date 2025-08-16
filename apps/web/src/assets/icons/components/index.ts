@@ -7,6 +7,9 @@ import LinkCopiedIcon from './LinkCopiedIcon';
 import LeftChevronIcon from './LeftChevronIcon';
 import QuizCorrectIcon from './QuizCorrectIcon';
 import QuizWrongIcon from './QuizWrongIcon';
+import KakaoIcon from './KakaoIcon';
+import LinkCopyIcon from './LinkCopyIcon';
+import MoreInfo from './MoreInfo';
 
 export {
   ShareIcon,
@@ -18,4 +21,7 @@ export {
   LeftChevronIcon,
   QuizCorrectIcon,
   QuizWrongIcon,
+  MoreInfo,
+  KakaoIcon,
+  LinkCopyIcon,
 };
