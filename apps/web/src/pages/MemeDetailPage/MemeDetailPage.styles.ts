@@ -26,35 +26,41 @@ const Image = styled.img`
 
 const ButtonContainer = styled.div`
   position: fixed;
-  max-width: 425px;
+  max-width: ${({ theme }) => theme.breakpoints.mobile};
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
   width: 100%;
-  padding: 24px 14px;
+  padding: 12px 14px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
   border-top: 1px solid ${({ theme }) => theme.palette.gray['gray-9']};
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 10;
 `;
 
-const ActionButton = styled.button`
-  flex: 1;
+interface ActionButtonProps {
+  isPrimary?: boolean;
+}
+
+const ActionButton = styled.button<ActionButtonProps>`
+  flex: ${({ isPrimary }) => (isPrimary ? 1 : 2)};
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  background-color: ${({ theme }) => theme.palette.gray['gray-9']};
-  border: 1px solid ${({ theme }) => theme.palette.gray['gray-8']};
-  border-radius: 10px;
+  background-color: ${({ theme, isPrimary }) =>
+    isPrimary ? theme.palette.gray['gray-9'] : theme.palette.main.pink[50]};
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 14px;
+  padding: 12px;
   ${({ theme }) => theme.typography.title.subhead2};
   color: ${({ theme }) => theme.palette.common.white};
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette.gray['gray-8']};
+    background-color: ${({ theme, isPrimary }) =>
+      isPrimary ? theme.palette.gray['gray-8'] : theme.palette.main.pink[40]};
   }
 `;
 

@@ -90,6 +90,18 @@ const MemeDetailPage = () => {
       </S.Container>
       <S.ButtonContainer>
         <S.ActionButton
+          isPrimary
+          onClick={() => {
+            nativeBridge.customMeme({
+              title: memeDetail?.success.title ?? '',
+              image: memeDetail?.success.imgUrl ?? '',
+            });
+          }}
+        >
+          <MemeDesignPenIcon />
+          <span>밈 꾸미기</span>
+        </S.ActionButton>
+        <S.ActionButton
           onClick={() => {
             if (isWebview) {
               nativeBridge.shareMeme({
@@ -103,17 +115,6 @@ const MemeDetailPage = () => {
         >
           <ShareIcon />
           <span>공유하기</span>
-        </S.ActionButton>
-        <S.ActionButton
-          onClick={() => {
-            nativeBridge.customMeme({
-              title: memeDetail?.success.title ?? '',
-              image: memeDetail?.success.imgUrl ?? '',
-            });
-          }}
-        >
-          <MemeDesignPenIcon />
-          <span>밈 꾸미기</span>
         </S.ActionButton>
       </S.ButtonContainer>
     </Layout>
