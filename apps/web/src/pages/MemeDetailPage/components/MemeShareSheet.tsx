@@ -24,20 +24,17 @@ const MemeShareSheet = ({
 
   useEffect(() => {
     // Kakao SDK 초기화
-    if (!window.Kakao) {
-      const script = document.createElement('script');
-      script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
-      script.async = true;
-      document.head.appendChild(script);
-
-      script.onload = () => {
-        window.Kakao.init('05ba74b5a769929cd086247c874b60e4');
-      };
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init('05ba74b5a769929cd086247c874b60e4');
     }
   }, []);
 
   const handleKakaoShare = () => {
-    if (window.Kakao) {
+    if (!window.Kakao?.isInitialized()) {
+      window.Kakao?.init('05ba74b5a769929cd086247c874b60e4');
+    }
+
+    if (window.Kakao?.Share) {
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
@@ -159,6 +156,7 @@ interface KakaoShare {
 
 interface KakaoSDK {
   init: (key: string) => void;
+  isInitialized: () => boolean;
   Share: KakaoShare;
 }
 
