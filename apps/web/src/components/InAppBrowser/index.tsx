@@ -17,10 +17,13 @@ const InAppBrowserDetect = ({ children }: InAppBrowserDetectProps) => {
   } = useInAppBrowserDetect();
 
   useEffect(() => {
-    if (isInAppBrowser) moveToExternalBrowser();
-  }, [isInAppBrowser, moveToExternalBrowser]);
+    // 카카오톡 인앱브라우저가 아닌 경우에만 외부 브라우저로 이동
+    if (isInAppBrowser && browserName !== 'kakaotalk') {
+      moveToExternalBrowser();
+    }
+  }, [isInAppBrowser, browserName, moveToExternalBrowser]);
 
-  if (isInAppBrowser) {
+  if (isInAppBrowser && browserName !== 'kakaotalk') {
     const userBrowserName = (() => {
       switch (browserName) {
         case 'kakaotalk':

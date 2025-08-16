@@ -78,8 +78,9 @@ const useInAppBrowserDetect = () => {
     (currentUrl: string, browser: string): string => {
       const isAndroid = userAgent.includes('android');
 
+      // 카카오톡 인앱브라우저에서는 외부 브라우저로 이동하지 않음
       if (browser === 'kakaotalk') {
-        return `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`;
+        return currentUrl;
       }
 
       if (isAndroid) {
