@@ -77,9 +77,6 @@ const MemeDetailPage = () => {
           />
         </S.ImageContainer>
         <S.ContentContainer>
-          <S.YearBadge>
-            <S.YearText>{memeDetail?.success.trendPeriod}</S.YearText>
-          </S.YearBadge>
           <S.Title>{memeDetail?.success.title}</S.Title>
           <S.HashTags>
             {memeDetail?.success.hashtags.map((tag) => `${tag} `)}

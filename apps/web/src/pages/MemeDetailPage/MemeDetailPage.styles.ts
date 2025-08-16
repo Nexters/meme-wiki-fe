@@ -68,21 +68,6 @@ const ContentContainer = styled.div`
   padding: 20px 14px;
 `;
 
-const YearBadge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  background-color: ${({ theme }) => theme.palette.main['light-blue'][90]};
-  border-radius: 45px;
-  margin-bottom: 10px;
-`;
-
-const YearText = styled.span`
-  ${({ theme }) => theme.typography.body.body1};
-  color: ${({ theme }) => theme.palette.gray['gray-9']};
-  font-family: Galmuri11;
-`;
-
 const Title = styled.h1`
   ${({ theme }) => theme.typography.title.display3};
   color: ${({ theme }) => theme.palette.common.white};
@@ -121,8 +106,6 @@ export {
   ContentContainer,
   ButtonContainer,
   ActionButton,
-  YearBadge,
-  YearText,
   Title,
   HashTags,
   SectionTitle,
