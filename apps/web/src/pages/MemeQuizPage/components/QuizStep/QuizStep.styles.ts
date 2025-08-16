@@ -80,11 +80,6 @@ const Button = styled.button<{ isSelected?: boolean }>`
     isSelected ? theme.palette.main.pink[95] : theme.palette.gray['gray-9']};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme, isSelected }) =>
-      isSelected ? theme.palette.main.pink[95] : theme.palette.gray['gray-8']};
-  }
 `;
 
 const ButtonIcon = styled.div<{ isSelected?: boolean }>`
