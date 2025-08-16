@@ -25,9 +25,13 @@ const MemeShareSheet = ({
   useEffect(() => {
     // Kakao SDK 초기화
     if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init('05ba74b5a769929cd086247c874b60e4');
+      // 웹뷰와 웹 환경에 따라 다른 키 사용
+      const kakaoKey = isWebview
+        ? '0538a100af545a410ceaa1adc3a0ca09'
+        : '05ba74b5a769929cd086247c874b60e4';
+      window.Kakao.init(kakaoKey);
     }
-  }, []);
+  }, [isWebview]);
 
   const handleKakaoShare = () => {
     if (isWebview) {
@@ -37,7 +41,10 @@ const MemeShareSheet = ({
     }
 
     if (!window.Kakao?.isInitialized()) {
-      window.Kakao?.init('05ba74b5a769929cd086247c874b60e4');
+      const kakaoKey = isWebview
+        ? '0538a100af545a410ceaa1adc3a0ca09'
+        : '05ba74b5a769929cd086247c874b60e4';
+      window.Kakao?.init(kakaoKey);
     }
 
     if (window.Kakao?.Share) {
