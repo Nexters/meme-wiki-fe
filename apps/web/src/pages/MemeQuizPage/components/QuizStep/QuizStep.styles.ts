@@ -1,104 +1,155 @@
 import styled from '@emotion/styled';
 
 const Container = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  gap: 20px;
-  width: 100%;
-  position: relative;
+  background-color: ${({ theme }) => theme.palette.common.black};
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const NavigationContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-`;
-
-const BackButton = styled.button`
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
-  background-color: ${({ theme }) => theme.palette.common.white};
-  color: ${({ theme }) => theme.palette.common.black};
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+const Content = styled.div`
+  padding: 0 20px;
+  flex: 1;
   display: flex;
-  align-items: center;
-  gap: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.gray['gray-1']};
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
-const QuizImage = styled.img`
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 8px;
-`;
-
-const Title = styled.h1`
-  ${({ theme }) => theme.typography.title['subhead-long1']};
-  color: ${({ theme }) => theme.palette.gray['gray-9']};
-  text-align: center;
-`;
-
-const Summary = styled.p`
-  ${({ theme }) => theme.typography.body['body-long1']};
-  color: ${({ theme }) => theme.palette.gray['gray-7']};
-  text-align: center;
+  flex-direction: column;
 `;
 
 const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 100%;
-  max-width: 500px;
+  margin-top: 34px;
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.palette.gray['gray-9']};
+  margin-bottom: 24px;
+`;
+
+const QuizImage = styled.img`
+  width: 100%;
+`;
+
+const QuestionHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+`;
+
+const QuestionNumber = styled.span`
+  ${({ theme }) => theme.typography.title.subhead1};
+  color: ${({ theme }) => theme.palette.main.pink[60]};
+`;
+
+const QuestionText = styled.h1`
+  ${({ theme }) => theme.typography.title.display3};
+  color: ${({ theme }) => theme.palette.gray['gray-1']};
+  white-space: pre-line;
+`;
+
+const AnswerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 108px;
 `;
 
 const Button = styled.button<{ isSelected?: boolean }>`
   width: 100%;
-  padding: 12px;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.palette.gray['gray-3']};
+  border: 1px solid
+    ${({ theme, isSelected }) =>
+      isSelected ? theme.palette.main.pink[60] : theme.palette.gray['gray-8']};
   background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.main.blue[50] : theme.palette.common.white};
-  color: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.common.white : theme.palette.common.black};
+    isSelected ? theme.palette.main.pink[95] : theme.palette.gray['gray-9']};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: ${({ theme, isSelected }) =>
-      isSelected ? theme.palette.main.blue[40] : theme.palette.gray['gray-1']};
+      isSelected ? theme.palette.main.pink[95] : theme.palette.gray['gray-8']};
   }
 `;
 
-const ResultContainer = styled.div`
+const ButtonIcon = styled.div<{ isSelected?: boolean }>`
+  width: 20px;
+  height: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  text-align: center;
+  justify-content: center;
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.palette.main.pink[60] : theme.palette.gray['gray-6']};
+`;
+
+const ButtonText = styled.span<{ isSelected?: boolean }>`
+  ${({ theme, isSelected }) =>
+    isSelected ? theme.typography.title.subhead1 : theme.typography.body.body2};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.palette.gray['gray-10'] : theme.palette.gray['gray-2']};
+`;
+
+const BottomContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.palette.common.black};
+  max-width: ${({ theme }) => theme.breakpoints.mobile};
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: flex;
+  justify-content: center;
+`;
+
+const BottomButton = styled.button<{ disabled?: boolean }>`
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  ${({ theme }) => theme.typography.title.subhead1};
+  cursor: pointer;
+
+  ${({ theme, disabled }) =>
+    disabled
+      ? `
+        background-color: ${theme.palette.gray['gray-8']};
+        color: ${theme.palette.gray['gray-6']};
+      `
+      : `
+        background: linear-gradient(180deg, ${theme.palette.main.pink[50]}, ${theme.palette.main.pink[80]});
+        color: ${theme.palette.common.white};
+      `}
 `;
 
 export {
   Container,
-  NavigationContainer,
-  BackButton,
-  QuizImage,
-  Title,
-  Summary,
+  Content,
   QuestionContainer,
+  QuestionHeader,
+  QuestionNumber,
+  QuestionText,
+  ImageContainer,
+  QuizImage,
+  AnswerContainer,
   Button,
-  ResultContainer,
+  ButtonIcon,
+  ButtonText,
+  BottomContainer,
+  BottomButton,
 };
