@@ -9,7 +9,11 @@ import { nativeBridge } from '@/utils/bridge';
 import * as S from './MemeDetailPage.styles';
 import { useTheme } from '@emotion/react';
 import { useParams } from 'react-router-dom';
-import { useMemeDetailQuery } from '@meme_wiki/apis';
+import {
+  useMemeCustomMutation,
+  useMemeDetailQuery,
+  useShareMemeMutation,
+} from '@meme_wiki/apis';
 import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 
@@ -29,6 +33,8 @@ const MemeDetailPage = () => {
   const [isWebview, setIsWebview] = useState(false);
   const { memeId } = useParams();
   const { data: memeDetail } = useMemeDetailQuery(memeId!);
+  const { mutate: shareMeme } = useShareMemeMutation();
+  const { mutate: customMeme } = useMemeCustomMutation();
 
   const theme = useTheme();
 
@@ -92,10 +98,17 @@ const MemeDetailPage = () => {
         <S.ActionButton
           isPrimary
           onClick={() => {
-            nativeBridge.customMeme({
-              title: memeDetail?.success.title ?? '',
-              image: memeDetail?.success.imgUrl ?? '',
-            });
+            // 밈 꾸미기 mutation
+            customMeme({ id: memeId! });
+
+            if (isWebview) {
+              nativeBridge.customMeme({
+                title: memeDetail?.success.title ?? '',
+                image: memeDetail?.success.imgUrl ?? '',
+              });
+            } else {
+              alert('밈 꾸미기 클릭!');
+            }
           }}
         >
           <MemeDesignPenIcon />
@@ -103,6 +116,9 @@ const MemeDetailPage = () => {
         </S.ActionButton>
         <S.ActionButton
           onClick={() => {
+            // 밈 공유하기 mutation
+            shareMeme({ id: memeId! });
+
             if (isWebview) {
               nativeBridge.shareMeme({
                 title: memeDetail?.success.title ?? '',
