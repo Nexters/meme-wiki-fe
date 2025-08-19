@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { LinkCopiedIcon } from '@/assets/icons';
 import MemeQuizResultBackground from '@/assets/images/MemeQuizResultBackground.png';
 import {
@@ -56,7 +56,7 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
       // 결과 화면 애니메이션 시작
       const timer = setTimeout(() => {
         setShowResult(true);
-      }, 1000);
+      }, 2500);
 
       return () => {
         clearTimeout(timer);
@@ -88,11 +88,92 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
   }, []);
 
   return (
-    <Container
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <Container>
+      {!showResult && (
+        <motion.div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            maxWidth: '425px',
+            height: '100%',
+            background: 'black',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '20px',
+            zIndex: 100,
+          }}
+        >
+          <motion.div
+            style={{
+              width: '200px',
+              height: '200px',
+              borderRadius: '50%',
+              background:
+                'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+              position: 'absolute',
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          <motion.p
+            style={{
+              color: 'white',
+              fontSize: '24px',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+            animate={{
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            결과 집계중
+          </motion.p>
+          <motion.div
+            style={{
+              display: 'flex',
+              gap: '8px',
+            }}
+          >
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: 'white',
+                }}
+                animate={{
+                  y: [-4, 4, -4],
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </motion.div>
+        </motion.div>
+      )}
       <ResultCard
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{
