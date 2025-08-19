@@ -46,17 +46,27 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
   const { mutate: quizResult } = useMemeQuizMutation();
   const isFirstRender = useRef(true);
   const [isWebview, setIsWebview] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
-  useEffect(() => {
+  useEffect((): (() => void) | void => {
     if (isFirstRender.current) {
       quizResult({ rightCount });
       isFirstRender.current = false;
+
+      // 결과 화면 애니메이션 시작
+      const timer = setTimeout(() => {
+        setShowResult(true);
+      }, 1000);
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [rightCount, quizResult]);
 
   useEffect(() => {
     // 웹뷰 상태 변경 이벤트 리스너
-    const handleWebviewState = (event: CustomEvent<boolean>) => {
+    const handleWebviewState = (event: CustomEvent<boolean>): void => {
       setIsWebview(event.detail);
     };
 
@@ -78,18 +88,58 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
   }, []);
 
   return (
-    <Container>
-      <ResultCard>
+    <Container
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <ResultCard
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{
+          scale: showResult ? 1 : 0.9,
+          opacity: showResult ? 1 : 0,
+        }}
+        transition={{
+          type: 'spring',
+          duration: 0.8,
+          bounce: 0.4,
+        }}
+      >
         <BackgroundImage
           src={MemeQuizResultBackground}
           alt="밈 퀴즈 결과 배경"
         />
         <ContentWrapper>
-          <Badge>
+          <Badge
+            initial={{ y: -20, opacity: 0 }}
+            animate={{
+              y: showResult ? 0 : -20,
+              opacity: showResult ? 1 : 0,
+            }}
+            transition={{
+              type: 'spring',
+              duration: 0.6,
+              delay: 0.4,
+            }}
+          >
             <BadgeText>밈퀴즈 종료!</BadgeText>
           </Badge>
           <ResultTextContainer>
-            <ResultTitle>총 {rightCount}개를 맞췄어요!</ResultTitle>
+            <ResultTitle
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{
+                scale: showResult ? 1 : 0.8,
+                opacity: showResult ? 1 : 0,
+              }}
+              transition={{
+                type: 'spring',
+                duration: 0.6,
+                delay: 0.6,
+              }}
+            >
+              총 {rightCount}
+              개를 맞췄어요!
+            </ResultTitle>
             <ResultSubtitle>미미키와 함께 밈잘알이 되어보아요.</ResultSubtitle>
           </ResultTextContainer>
         </ContentWrapper>
@@ -116,6 +166,17 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
               navigator.clipboard.writeText(window.location.href);
               setShowToast(true);
             }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{
+              y: showResult ? 0 : 20,
+              opacity: showResult ? 1 : 0,
+            }}
+            transition={{
+              duration: 0.4,
+              delay: 1,
+            }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             링크 복사하고 공유하기
           </ShareButton>
@@ -128,6 +189,17 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
               moveToStore();
             }
           }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{
+            y: showResult ? 0 : 20,
+            opacity: showResult ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.4,
+            delay: 1.2,
+          }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           더 많은 밈 보러가기
         </MoreButton>

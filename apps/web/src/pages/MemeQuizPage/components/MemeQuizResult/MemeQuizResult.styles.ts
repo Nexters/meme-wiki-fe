@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'motion/react';
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.palette.common.black};
 `;
 
-const ResultCard = styled.div`
+const ResultCard = styled(motion.div)`
   position: relative;
   width: calc(100% - 40px);
   max-width: ${({ theme }) => theme.breakpoints.mobile};
@@ -48,7 +48,7 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-const Badge = styled.div`
+const Badge = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@ const ResultTextContainer = styled.div`
   text-align: center;
 `;
 
-const ResultTitle = styled.h1`
+const ResultTitle = styled(motion.h1)`
   ${({ theme }) => theme.typography.title.display2};
   color: ${({ theme }) => theme.palette.common.black};
   margin-bottom: 6px;
@@ -95,7 +95,7 @@ const ButtonContainer = styled.div`
   gap: 14px;
 `;
 
-const ShareButton = styled.button`
+const ShareButton = styled(motion.button)`
   width: 100%;
   height: 52px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};
@@ -110,7 +110,7 @@ const ShareButton = styled.button`
   }
 `;
 
-const MoreButton = styled.button`
+const MoreButton = styled(motion.button)`
   width: 100%;
   height: 52px;
   background-color: ${({ theme }) => theme.palette.main.pink[50]};
