@@ -16,6 +16,8 @@ import {
   ButtonText,
   BottomContainer,
   BottomButton,
+  ImageSkeleton,
+  AnswerSkeleton,
 } from './QuizStep.styles';
 
 interface QuizStepProps {
@@ -30,9 +32,15 @@ interface QuizStepProps {
   currentStep: string;
   onAnswer: (currentStep: string, isRight: boolean) => void;
   currentAnswer?: boolean;
+  isLoading?: boolean;
 }
 
-const QuizStep = ({ quiz, currentStep, onAnswer }: QuizStepProps) => {
+const QuizStep = ({
+  quiz,
+  currentStep,
+  onAnswer,
+  isLoading = false,
+}: QuizStepProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResultModal, setShowResultModal] = useState(false);
 
@@ -65,7 +73,11 @@ const QuizStep = ({ quiz, currentStep, onAnswer }: QuizStepProps) => {
       <Content>
         <QuestionContainer>
           <ImageContainer>
-            <QuizImage src={quiz.image} alt={quiz.question} />
+            {isLoading ? (
+              <ImageSkeleton />
+            ) : (
+              <QuizImage src={quiz.image} alt={quiz.question} />
+            )}
           </ImageContainer>
 
           <QuestionHeader>
@@ -74,23 +86,32 @@ const QuizStep = ({ quiz, currentStep, onAnswer }: QuizStepProps) => {
           </QuestionHeader>
 
           <AnswerContainer>
-            {quiz.questions.map((question, index) => {
-              const isSelected = selectedAnswer === index;
-              return (
-                <Button
-                  key={index}
-                  onClick={() => handleAnswerSelect(index)}
-                  isSelected={isSelected}
-                >
-                  <ButtonIcon isSelected={isSelected}>
-                    <LinkCopiedIcon width={20} height={20} />
-                  </ButtonIcon>
-                  <ButtonText isSelected={isSelected}>
-                    {question.message}
-                  </ButtonText>
-                </Button>
-              );
-            })}
+            {isLoading ? (
+              <>
+                <AnswerSkeleton />
+                <AnswerSkeleton />
+                <AnswerSkeleton />
+                <AnswerSkeleton />
+              </>
+            ) : (
+              quiz.questions.map((question, index) => {
+                const isSelected = selectedAnswer === index;
+                return (
+                  <Button
+                    key={index}
+                    onClick={() => handleAnswerSelect(index)}
+                    isSelected={isSelected}
+                  >
+                    <ButtonIcon isSelected={isSelected}>
+                      <LinkCopiedIcon width={20} height={20} />
+                    </ButtonIcon>
+                    <ButtonText isSelected={isSelected}>
+                      {question.message}
+                    </ButtonText>
+                  </Button>
+                );
+              })
+            )}
           </AnswerContainer>
         </QuestionContainer>
       </Content>

@@ -1,4 +1,14 @@
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
 
 const Container = styled.div`
   position: relative;
@@ -132,6 +142,34 @@ const BottomButton = styled.button<{ disabled?: boolean }>`
       `}
 `;
 
+const ImageSkeleton = styled.div`
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.palette.gray['gray-8']} 25%,
+    ${({ theme }) => theme.palette.gray['gray-7']} 37%,
+    ${({ theme }) => theme.palette.gray['gray-8']} 63%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite linear;
+`;
+
+const AnswerSkeleton = styled.div`
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.palette.gray['gray-8']} 25%,
+    ${({ theme }) => theme.palette.gray['gray-7']} 37%,
+    ${({ theme }) => theme.palette.gray['gray-8']} 63%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite linear;
+`;
+
 export {
   Container,
   Content,
@@ -147,4 +185,6 @@ export {
   ButtonText,
   BottomContainer,
   BottomButton,
+  ImageSkeleton,
+  AnswerSkeleton,
 };

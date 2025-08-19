@@ -83,37 +83,36 @@ const MemeQuizPage = () => {
       {quizStatus === 'NOT_STARTED' && (
         <MemeQuizStart onNext={() => setQuizStatus('IN_PROGRESS')} />
       )}
-      {quizStatus === 'IN_PROGRESS' &&
-        quizData?.success &&
-        !isImagesLoading && (
-          <Funnel>
-            {[
-              ...quizData.success.map((quiz, index) => (
-                <Funnel.Step key={`quiz${index + 1}`} step={`quiz${index + 1}`}>
-                  <QuizStep
-                    quiz={quiz}
-                    currentStep={`quiz${index + 1}`}
-                    currentAnswer={stepAnswers[`quiz${index + 1}`]}
-                    onAnswer={(currentStep, isRight) => {
-                      setStepAnswers((prev) => ({
-                        ...prev,
-                        [currentStep]: isRight,
-                      }));
+      {quizStatus === 'IN_PROGRESS' && quizData?.success && (
+        <Funnel>
+          {[
+            ...quizData.success.map((quiz, index) => (
+              <Funnel.Step key={`quiz${index + 1}`} step={`quiz${index + 1}`}>
+                <QuizStep
+                  quiz={quiz}
+                  currentStep={`quiz${index + 1}`}
+                  currentAnswer={stepAnswers[`quiz${index + 1}`]}
+                  isLoading={isImagesLoading}
+                  onAnswer={(currentStep, isRight) => {
+                    setStepAnswers((prev) => ({
+                      ...prev,
+                      [currentStep]: isRight,
+                    }));
 
-                      const currentStepIndex = stepsArray.indexOf(currentStep);
-                      onNext(stepsArray[currentStepIndex + 1]);
-                    }}
-                  />
-                </Funnel.Step>
-              )),
-              <Funnel.Step key="result" step={quizSteps.result}>
-                <MemeQuizResult
-                  rightCount={Object.values(stepAnswers).filter(Boolean).length}
+                    const currentStepIndex = stepsArray.indexOf(currentStep);
+                    onNext(stepsArray[currentStepIndex + 1]);
+                  }}
                 />
-              </Funnel.Step>,
-            ]}
-          </Funnel>
-        )}
+              </Funnel.Step>
+            )),
+            <Funnel.Step key="result" step={quizSteps.result}>
+              <MemeQuizResult
+                rightCount={Object.values(stepAnswers).filter(Boolean).length}
+              />
+            </Funnel.Step>,
+          ]}
+        </Funnel>
+      )}
     </Layout>
   );
 };
