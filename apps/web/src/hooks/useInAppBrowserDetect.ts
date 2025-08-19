@@ -34,7 +34,7 @@ const BROWSER_PATTERNS: BrowserPattern[] = [
 ];
 
 const MEMEWIKI_APP_INFO = {
-  androidPackage: 'com.mimu_bird_meme',
+  androidPackage: 'com.mimu_bird.meme',
   iosAppId: '6751053974',
 };
 
@@ -63,7 +63,7 @@ const useInAppBrowserDetect = () => {
 
   const moveToStore = useCallback(() => {
     if (isAndroid) {
-      window.location.href = `https://play.google.com/store/apps/details?id=com.mimu_bird.meme`;
+      window.location.href = `https://play.google.com/store/apps/details?id=${MEMEWIKI_APP_INFO.androidPackage}`;
     } else if (isIOS) {
       window.location.href = `itms-apps://itunes.apple.com/app/id${MEMEWIKI_APP_INFO.iosAppId}`;
     } else {
