@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const Container = styled(motion.div)`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ const Container = styled(motion.div)`
 `;
 
 const TextSection = styled(motion.div)`
-  margin-top: 158px;
+  margin-top: 9.875rem;
   text-align: center;
   width: 100%;
   padding: 0 24px;

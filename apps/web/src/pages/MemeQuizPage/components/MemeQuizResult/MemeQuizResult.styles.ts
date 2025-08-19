@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const Container = styled(motion.div)`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ const ResultCard = styled(motion.div)`
   width: calc(100% - 40px);
   max-width: ${({ theme }) => theme.breakpoints.mobile};
   height: 481px;
-  margin-top: 70px;
+  margin-top: 4.375rem;
   border-radius: 14px;
   background: linear-gradient(
     135deg,
