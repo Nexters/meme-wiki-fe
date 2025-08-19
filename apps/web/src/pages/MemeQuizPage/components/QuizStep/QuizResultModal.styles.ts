@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { motion } from 'motion/react';
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +15,7 @@ const Overlay = styled.div`
   padding: 0 20px;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled(motion.div)`
   width: calc(100% - 40px);
   max-width: calc(${({ theme }) => theme.breakpoints.mobile} - 40px);
   min-height: 280px;
@@ -26,35 +27,35 @@ const ModalContainer = styled.div`
   align-items: center;
 `;
 
-const IconWrapper = styled.div`
+const IconWrapper = styled(motion.div)`
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const ResultText = styled.p`
+const ResultText = styled(motion.p)`
   ${({ theme }) => theme.typography.title.display4};
   color: ${({ theme }) => theme.palette.common.black};
   text-align: center;
   margin-bottom: 8px;
 `;
 
-const SubText = styled.p`
+const SubText = styled(motion.p)`
   ${({ theme }) => theme.typography.body.body1};
   color: ${({ theme }) => theme.palette.gray['gray-6']};
   text-align: center;
   margin-bottom: 24px;
 `;
 
-const CorrectAnswerText = styled.p`
+const CorrectAnswerText = styled(motion.p)`
   ${({ theme }) => theme.typography.title.subhead1};
   color: ${({ theme }) => theme.palette.main.pink[60]};
   text-align: center;
   margin-bottom: 24px;
 `;
 
-const NextButton = styled.button`
+const NextButton = styled(motion.button)`
   width: 100%;
   height: 52px;
   border: none;
