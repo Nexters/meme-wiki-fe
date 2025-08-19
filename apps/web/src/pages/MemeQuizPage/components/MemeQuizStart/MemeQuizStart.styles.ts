@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { motion } from 'motion/react';
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
@@ -14,7 +15,7 @@ const Container = styled.div`
   );
 `;
 
-const TextSection = styled.div`
+const TextSection = styled(motion.div)`
   margin-top: 158px;
   text-align: center;
   width: 100%;
@@ -33,7 +34,7 @@ const Subtitle = styled.p`
   color: ${({ theme }) => theme.palette.common.white};
 `;
 
-const IconSection = styled.div`
+const IconSection = styled(motion.div)`
   margin-top: 61px;
   width: 100%;
   height: 240px;
@@ -42,7 +43,7 @@ const IconSection = styled.div`
   align-items: center;
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled(motion.div)`
   position: fixed;
   bottom: 0;
   left: 0;
