@@ -63,7 +63,7 @@ const useInAppBrowserDetect = () => {
 
   const moveToStore = useCallback(() => {
     if (isAndroid) {
-      window.location.href = `market://details?id=${MEMEWIKI_APP_INFO.androidPackage}`;
+      window.location.href = `https://play.google.com/store/apps/details?id=com.mimu_bird.meme`;
     } else if (isIOS) {
       window.location.href = `itms-apps://itunes.apple.com/app/id${MEMEWIKI_APP_INFO.iosAppId}`;
     } else {
