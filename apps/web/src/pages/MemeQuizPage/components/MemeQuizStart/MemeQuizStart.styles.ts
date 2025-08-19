@@ -53,7 +53,7 @@ const ButtonWrapper = styled(motion.div)`
   margin: 0 auto;
 `;
 
-const StartButton = styled.button`
+const StartButton = styled(motion.button)`
   width: 100%;
   height: 52px;
   background-color: ${({ theme }) => theme.palette.gray['gray-10']};

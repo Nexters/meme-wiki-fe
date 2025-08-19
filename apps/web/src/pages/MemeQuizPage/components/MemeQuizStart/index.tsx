@@ -55,7 +55,11 @@ const MemeQuizStart = ({ onNext }: MemeQuizStartProps) => {
             stiffness: 100,
           }}
         >
-          <StartButton onClick={onNext} style={{ position: 'relative' }}>
+          <StartButton
+            onClick={onNext}
+            style={{ position: 'relative' }}
+            whileTap={{ scale: 0.95 }}
+          >
             밈퀴즈 시작하기
           </StartButton>
         </ButtonWrapper>

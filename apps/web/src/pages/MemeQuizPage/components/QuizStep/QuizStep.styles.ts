@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import { motion } from 'motion/react';
 
 const shimmer = keyframes`
   0% {
@@ -75,7 +76,7 @@ const AnswerContainer = styled.div`
   margin-bottom: 108px;
 `;
 
-const Button = styled.button<{ isSelected?: boolean }>`
+const Button = styled(motion.button)<{ isSelected?: boolean }>`
   width: 100%;
   height: 50px;
   padding: 0 20px;
@@ -89,7 +90,6 @@ const Button = styled.button<{ isSelected?: boolean }>`
   background-color: ${({ theme, isSelected }) =>
     isSelected ? theme.palette.main.pink[95] : theme.palette.gray['gray-9']};
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 `;
 
 const ButtonIcon = styled.div<{ isSelected?: boolean }>`
@@ -122,7 +122,7 @@ const BottomContainer = styled.div`
   justify-content: center;
 `;
 
-const BottomButton = styled.button<{ disabled?: boolean }>`
+const BottomButton = styled(motion.button)<{ disabled?: boolean }>`
   width: 100%;
   height: 52px;
   border: none;

@@ -68,10 +68,6 @@ const NextButton = styled(motion.button)`
   ${({ theme }) => theme.typography.title.subhead1};
   color: ${({ theme }) => theme.palette.common.white};
   cursor: pointer;
-
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 export {

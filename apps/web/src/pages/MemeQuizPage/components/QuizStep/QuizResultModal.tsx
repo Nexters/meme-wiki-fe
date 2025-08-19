@@ -100,9 +100,18 @@ const QuizResultModal = ({
         <NextButton
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.8 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{
+            scale: 0.98,
+            transition: {
+              type: 'spring',
+              stiffness: 400,
+              damping: 17,
+            },
+          }}
+          transition={{
+            duration: 0.4,
+            delay: 0.8,
+          }}
           onClick={onNext}
         >
           다음 퀴즈 풀기

@@ -101,6 +101,12 @@ const QuizStep = ({
                     key={index}
                     onClick={() => handleAnswerSelect(index)}
                     isSelected={isSelected}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 400,
+                      damping: 17,
+                    }}
                   >
                     <ButtonIcon isSelected={isSelected}>
                       <LinkCopiedIcon width={20} height={20} />
@@ -117,7 +123,16 @@ const QuizStep = ({
       </Content>
 
       <BottomContainer>
-        <BottomButton onClick={handleNext} disabled={selectedAnswer === null}>
+        <BottomButton
+          onClick={handleNext}
+          disabled={selectedAnswer === null}
+          whileTap={!selectedAnswer ? {} : { scale: 0.98 }}
+          transition={{
+            type: 'spring',
+            stiffness: 400,
+            damping: 17,
+          }}
+        >
           다음
         </BottomButton>
       </BottomContainer>
