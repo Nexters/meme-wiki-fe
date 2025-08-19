@@ -21,9 +21,23 @@ import {
 } from './MemeQuizResult.styles';
 import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
 import { useMemeQuizMutation } from '@meme_wiki/apis';
+import { nativeBridge } from '@/utils/bridge';
+import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 
 interface MemeQuizResultPageProps {
   rightCount: number;
+}
+
+// 전역에서 함수 정의
+if (typeof window !== 'undefined') {
+  window.onNativeEntered = (command: BridgeCommand<CommandType>) => {
+    // MemeDetailPage 컴포넌트의 setIsWebview를 호출하기 위한 커스텀 이벤트
+    window.dispatchEvent(
+      new CustomEvent('webviewStateChange', {
+        detail: command.type === COMMAND_TYPE.APP_ENTERED,
+      }),
+    );
+  };
 }
 
 const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
@@ -31,6 +45,7 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
   const [showToast, setShowToast] = useState(false);
   const { mutate: quizResult } = useMemeQuizMutation();
   const isFirstRender = useRef(true);
+  const [isWebview, setIsWebview] = useState(false);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -38,6 +53,29 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
       isFirstRender.current = false;
     }
   }, [rightCount, quizResult]);
+
+  useEffect(() => {
+    // 웹뷰 상태 변경 이벤트 리스너
+    const handleWebviewState = (event: CustomEvent<boolean>) => {
+      setIsWebview(event.detail);
+    };
+
+    // 이벤트 리스너 등록
+    window.addEventListener(
+      'webviewStateChange',
+      handleWebviewState as EventListener,
+    );
+
+    // 웹뷰 진입 알림
+    nativeBridge.webEntered();
+
+    return () => {
+      window.removeEventListener(
+        'webviewStateChange',
+        handleWebviewState as EventListener,
+      );
+    };
+  }, []);
 
   return (
     <Container>
@@ -82,7 +120,17 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
             링크 복사하고 공유하기
           </ShareButton>
         </ToastContainer>
-        <MoreButton onClick={moveToStore}>더 많은 밈 보러가기</MoreButton>
+        <MoreButton
+          onClick={() => {
+            if (isWebview) {
+              nativeBridge.showMoreMemes();
+            } else {
+              moveToStore();
+            }
+          }}
+        >
+          더 많은 밈 보러가기
+        </MoreButton>
       </ButtonContainer>
     </Container>
   );

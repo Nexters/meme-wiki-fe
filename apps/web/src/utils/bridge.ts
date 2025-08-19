@@ -75,6 +75,11 @@ class NativeBridge {
   webEntered() {
     this.sendCommand(COMMAND_TYPE.WEB_ENTERED);
   }
+
+  // 더 많은 밈 보기
+  showMoreMemes() {
+    this.sendCommand(COMMAND_TYPE.SHOW_MORE_MEMES);
+  }
 }
 
 export const nativeBridge = NativeBridge.getInstance();

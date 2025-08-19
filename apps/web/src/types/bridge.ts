@@ -3,6 +3,7 @@ export const COMMAND_TYPE = {
   CUSTOM_MEME: 'CUSTOM_MEME',
   WEB_ENTERED: 'WEB_ENTERED',
   APP_ENTERED: 'APP_ENTERED',
+  SHOW_MORE_MEMES: 'SHOW_MORE_MEMES',
 } as const;
 
 export type CommandType = (typeof COMMAND_TYPE)[keyof typeof COMMAND_TYPE];
@@ -22,6 +23,7 @@ export type CommandDataMap = {
   [COMMAND_TYPE.CUSTOM_MEME]: CustomMemeData;
   [COMMAND_TYPE.WEB_ENTERED]: null;
   [COMMAND_TYPE.APP_ENTERED]: null;
+  [COMMAND_TYPE.SHOW_MORE_MEMES]: null;
 };
 
 export interface BridgeCommand<T extends CommandType> {
