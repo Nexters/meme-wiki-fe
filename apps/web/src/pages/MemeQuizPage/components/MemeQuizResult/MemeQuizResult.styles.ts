@@ -9,6 +9,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.palette.common.black};
+  padding-bottom: 120px;
 `;
 
 const ResultCard = styled(motion.div)`
@@ -17,8 +18,8 @@ const ResultCard = styled(motion.div)`
   max-width: ${({ theme }) => theme.breakpoints.mobile};
   height: 45vh;
   min-height: 400px;
-  max-height: 481px;
-  margin-top: 10vh;
+  max-height: 450px;
+  margin-top: 6vh;
   border-radius: 14px;
   background: linear-gradient(
     135deg,
@@ -30,21 +31,22 @@ const ResultCard = styled(motion.div)`
   align-items: center;
   overflow: hidden;
 
-  @media screen and (max-height: 700px) {
-    height: 50vh;
-    margin-top: 8vh;
-    min-height: 350px;
-  }
-
-  @media screen and (min-height: 800px) {
-    height: 40vh;
-    margin-top: 12vh;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 35vh;
-    margin-top: 8vh;
-    max-height: 450px;
+    min-height: 320px;
+    max-height: 400px;
+    margin-top: 15vh;
+
+    @media screen and (max-height: 700px) {
+      height: 40vh;
+      margin-top: 10vh;
+      min-height: 300px;
+    }
+
+    @media screen and (min-height: 800px) {
+      height: 30vh;
+      margin-top: 20vh;
+    }
   }
 `;
 
@@ -129,8 +131,8 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 14px;
   z-index: 10;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
-  padding-top: 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  padding-top: 40px;
 `;
 
 const ShareButton = styled(motion.button)`
