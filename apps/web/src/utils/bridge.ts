@@ -4,6 +4,7 @@ import {
   CommandDataMap,
   CommandType,
   CustomMemeData,
+  ShareKakaoData,
   ShareMemeData,
 } from '../types/bridge';
 
@@ -79,6 +80,11 @@ class NativeBridge {
   // 더 많은 밈 보기
   showMoreMemes() {
     this.sendCommand(COMMAND_TYPE.SHOW_MORE_MEMES);
+  }
+
+  // 카카오 공유
+  shareKakao(data: ShareKakaoData) {
+    this.sendCommand(COMMAND_TYPE.SHARE_KAKAO, data);
   }
 }
 

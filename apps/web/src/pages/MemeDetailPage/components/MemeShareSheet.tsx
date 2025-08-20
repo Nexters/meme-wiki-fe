@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { KakaoIcon, MoreInfo, LinkCopyIcon } from '@/assets/icons';
 import * as S from './MemeShareSheet.styles';
+import { nativeBridge } from '@/utils/bridge';
 
 interface MemeShareSheetProps {
   isOpen: boolean;
@@ -35,8 +36,12 @@ const MemeShareSheet = ({
 
   const handleKakaoShare = () => {
     if (isWebview) {
-      const kakaoShareUrl = `kakaolink://send?text=${encodeURIComponent(title)}&image=${encodeURIComponent(imageUrl)}&url=${encodeURIComponent(window.location.href)}`;
-      window.location.href = kakaoShareUrl;
+      nativeBridge.shareKakao({
+        title,
+        image: imageUrl,
+      });
+      // const kakaoShareUrl = `kakaolink://send?text=${encodeURIComponent(title)}&image=${encodeURIComponent(imageUrl)}&url=${encodeURIComponent(window.location.href)}`;
+      // window.location.href = kakaoShareUrl;
       return;
     }
 
