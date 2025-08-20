@@ -15,8 +15,10 @@ const ResultCard = styled(motion.div)`
   position: relative;
   width: calc(100% - 40px);
   max-width: ${({ theme }) => theme.breakpoints.mobile};
-  height: 481px;
-  margin-top: 4.375rem;
+  height: 45vh;
+  min-height: 400px;
+  max-height: 481px;
+  margin-top: 10vh;
   border-radius: 14px;
   background: linear-gradient(
     135deg,
@@ -27,6 +29,23 @@ const ResultCard = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+
+  @media screen and (max-height: 700px) {
+    height: 50vh;
+    margin-top: 8vh;
+    min-height: 350px;
+  }
+
+  @media screen and (min-height: 800px) {
+    height: 40vh;
+    margin-top: 12vh;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 35vh;
+    margin-top: 8vh;
+    max-height: 450px;
+  }
 `;
 
 const BackgroundImage = styled.img`
@@ -55,7 +74,15 @@ const Badge = styled(motion.div)`
   padding: 6px 10px;
   background-color: ${({ theme }) => theme.palette.common.black};
   border-radius: 50px;
-  margin-top: 150px;
+  margin-top: 20%;
+
+  @media screen and (max-height: 700px) {
+    margin-top: 15%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 12%;
+  }
 `;
 
 const BadgeText = styled.span`
@@ -74,11 +101,19 @@ const ResultTitle = styled(motion.h1)`
   ${({ theme }) => theme.typography.title.display2};
   color: ${({ theme }) => theme.palette.common.black};
   margin-bottom: 6px;
+
+  @media screen and (max-height: 700px) {
+    ${({ theme }) => theme.typography.title.display1};
+  }
 `;
 
 const ResultSubtitle = styled.p`
   ${({ theme }) => theme.typography.title.subhead1};
   color: ${({ theme }) => theme.palette.common.black};
+
+  @media screen and (max-height: 700px) {
+    ${({ theme }) => theme.typography.title.subhead2};
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -88,11 +123,14 @@ const ButtonContainer = styled.div`
   right: 0;
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.mobile};
-  padding: 0 20px 40px;
+  padding: 0 20px min(40px, 5vh);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  z-index: 10;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  padding-top: 20px;
 `;
 
 const ShareButton = styled(motion.button)`
@@ -108,6 +146,10 @@ const ShareButton = styled(motion.button)`
   &:hover {
     background-color: ${({ theme }) => theme.palette.gray['gray-8']};
   }
+
+  @media screen and (max-height: 700px) {
+    height: 48px;
+  }
 `;
 
 const MoreButton = styled(motion.button)`
@@ -122,6 +164,10 @@ const MoreButton = styled(motion.button)`
 
   &:hover {
     background-color: ${({ theme }) => theme.palette.main.pink[40]};
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 48px;
   }
 `;
 
@@ -143,6 +189,7 @@ const Toast = styled(motion.div)`
   background-color: ${({ theme }) => theme.palette.gray['gray-1']};
   border-radius: 50px;
   white-space: nowrap;
+  z-index: 20;
 `;
 
 const ToastText = styled.span`
