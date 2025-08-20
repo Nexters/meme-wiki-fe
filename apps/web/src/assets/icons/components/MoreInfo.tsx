@@ -9,16 +9,8 @@ const MoreInfo = ({ width = 48, height = 48 }: IconProps) => {
       viewBox="0 0 48 48"
       fill="none"
     >
-      <rect width="46.5" height="46.5" x=".75" y=".75" fill="#fff" rx="23.25" />
-      <rect
-        width="46.5"
-        height="46.5"
-        x=".75"
-        y=".75"
-        stroke="#E4E6EB"
-        strokeWidth="1.5"
-        rx="23.25"
-      />
+      <rect width="48" height="48" fill="#fff" rx="24" />
+      <rect width="48" height="48" stroke="#E4E6EB" strokeWidth="1.5" rx="24" />
       <circle
         cx="30.919"
         cy="23.998"
