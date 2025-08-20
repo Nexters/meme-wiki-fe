@@ -6,9 +6,10 @@ const LinkCopyIcon = ({ width = 48, height = 48 }: IconProps) => {
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
+      viewBox="0 0 48 48"
       fill="none"
     >
-      <rect width={width} height={height} fill="#E4E6EB" rx="24" />
+      <rect width="48" height="48" fill="#E4E6EB" rx="24" />
       <path
         stroke="#121212"
         strokeLinecap="round"

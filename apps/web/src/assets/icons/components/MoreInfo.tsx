@@ -1,6 +1,14 @@
-const MoreInfo = () => {
+import { IconProps } from '@/assets/icons/types';
+
+const MoreInfo = ({ width = 48, height = 48 }: IconProps) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 48 48"
+      fill="none"
+    >
       <rect width="46.5" height="46.5" x=".75" y=".75" fill="#fff" rx="23.25" />
       <rect
         width="46.5"
