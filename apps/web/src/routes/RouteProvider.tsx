@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 
-import NotFound from '@/components/ErrorPage/NotFound';
 import SomethingWentWrong from '@/components/ErrorPage/SomethingWentWrong';
 import APIErrorBoundary from '@/components/ErrorBoundary/APIErrorBoundary';
 import UnknownErrorBoundary from '@/components/ErrorBoundary/UnKnownErrorBoudary';
@@ -56,7 +55,7 @@ const router = createBrowserRouter([
       ...createAuthRouter('PUBLIC', []),
       {
         path: '*',
-        element: <NotFound />,
+        element: <SomethingWentWrong />,
       },
     ],
   },
