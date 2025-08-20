@@ -43,11 +43,11 @@ const Subtitle = styled.p`
 `;
 
 const IconSection = styled(motion.div)`
-  margin-top: 5vh; // 뷰포트 높이의 5%
+  margin-top: 5vh;
   width: 100%;
-  height: 25vh; // 뷰포트 높이의 25%
-  min-height: 160px; // 최소 높이 설정
-  max-height: 240px; // 최대 높이 설정
+  height: 25vh;
+  min-height: 160px;
+  max-height: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@ const ButtonWrapper = styled(motion.div)`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0 20px min(40px, 5vh); // 하단 패딩을 뷰포트 높이의 5% 또는 40px 중 작은 값으로 설정
+  padding: 0 20px min(40px, 5vh);
   max-width: ${({ theme }) => theme.breakpoints.mobile};
   margin: 0 auto;
 `;
