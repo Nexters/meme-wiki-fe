@@ -16,10 +16,18 @@ const Container = styled(motion.div)`
 `;
 
 const TextSection = styled(motion.div)`
-  margin-top: 9.875rem;
+  margin-top: 15vh;
   text-align: center;
   width: 100%;
   padding: 0 24px;
+
+  @media screen and (max-height: 700px) {
+    margin-top: 10vh;
+  }
+
+  @media screen and (min-height: 800px) {
+    margin-top: 20vh;
+  }
 `;
 
 const Title = styled.h1`
@@ -35,12 +43,19 @@ const Subtitle = styled.p`
 `;
 
 const IconSection = styled(motion.div)`
-  margin-top: 61px;
+  margin-top: 5vh; // 뷰포트 높이의 5%
   width: 100%;
-  height: 240px;
+  height: 25vh; // 뷰포트 높이의 25%
+  min-height: 160px; // 최소 높이 설정
+  max-height: 240px; // 최대 높이 설정
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-height: 700px) {
+    margin-top: 3vh;
+    height: 20vh;
+  }
 `;
 
 const ButtonWrapper = styled(motion.div)`
@@ -48,7 +63,7 @@ const ButtonWrapper = styled(motion.div)`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0 20px 40px;
+  padding: 0 20px min(40px, 5vh); // 하단 패딩을 뷰포트 높이의 5% 또는 40px 중 작은 값으로 설정
   max-width: ${({ theme }) => theme.breakpoints.mobile};
   margin: 0 auto;
 `;
