@@ -13,6 +13,13 @@ const Overlay = styled(motion.div)`
   align-items: center;
   z-index: 1000;
   padding: 0 20px;
+
+  // 모달을 살짝 위로 올리기 위한 패딩 추가
+  padding-bottom: 15vh;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding-bottom: 0; // 데스크탑에서는 정중앙
+  }
 `;
 
 const ModalContainer = styled(motion.div)`
@@ -25,6 +32,11 @@ const ModalContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-height: 700px) {
+    padding: 32px 24px; // 작은 화면에서는 패딩 줄임
+    min-height: 260px;
+  }
 `;
 
 const IconWrapper = styled(motion.div)`
@@ -39,6 +51,11 @@ const ResultText = styled(motion.p)`
   color: ${({ theme }) => theme.palette.common.black};
   text-align: center;
   margin-bottom: 8px;
+
+  @media screen and (max-height: 700px) {
+    ${({ theme }) =>
+      theme.typography.title.display3}; // 작은 화면에서는 폰트 크기 줄임
+  }
 `;
 
 const SubText = styled(motion.p)`
@@ -68,6 +85,10 @@ const NextButton = styled(motion.button)`
   ${({ theme }) => theme.typography.title.subhead1};
   color: ${({ theme }) => theme.palette.common.white};
   cursor: pointer;
+
+  @media screen and (max-height: 700px) {
+    height: 48px; // 작은 화면에서는 버튼 높이 줄임
+  }
 `;
 
 export {
