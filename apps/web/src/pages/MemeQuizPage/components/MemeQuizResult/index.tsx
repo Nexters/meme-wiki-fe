@@ -93,12 +93,10 @@ const MemeQuizResult = ({ rightCount }: MemeQuizResultPageProps) => {
         <motion.div
           style={{
             position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            inset: 0,
             width: '100%',
             maxWidth: '425px',
-            height: '100vh',
+            margin: '0 auto',
             background: 'black',
             display: 'flex',
             flexDirection: 'column',
