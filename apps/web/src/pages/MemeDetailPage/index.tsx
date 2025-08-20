@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import { BridgeCommand, COMMAND_TYPE, CommandType } from '@/types/bridge';
 import useInAppBrowserDetect from '@/hooks/useInAppBrowserDetect';
 import MemeShareSheet from './components/MemeShareSheet';
+import MemeDetailSkeleton from './components/MemeDetailSkeleton';
 
 // 전역에서 함수 정의
 if (typeof window !== 'undefined') {
@@ -35,7 +36,7 @@ const MemeDetailPage = () => {
   const [isWebview, setIsWebview] = useState(false);
   const { memeId } = useParams();
   const { moveToStore } = useInAppBrowserDetect();
-  const { data: memeDetail } = useMemeDetailQuery(memeId!);
+  const { data: memeDetail, isLoading } = useMemeDetailQuery(memeId!);
   const { mutate: shareMeme } = useShareMemeMutation();
   const { mutate: customMeme } = useMemeCustomMutation();
   const [shareSheetOpen, setShareSheetOpen] = useState(false);
@@ -71,63 +72,69 @@ const MemeDetailPage = () => {
         backgroundColor: theme.palette.gray['gray-10'],
       }}
     >
-      <S.Container>
-        <S.ImageContainer>
-          <S.Image
-            src={memeDetail?.success.imgUrl}
-            alt={memeDetail?.success.title}
-          />
-        </S.ImageContainer>
-        <S.ContentContainer>
-          <S.Title>{memeDetail?.success.title}</S.Title>
-          <S.HashTags>
-            {memeDetail?.success.hashtags.map((tag) => `${tag} `)}
-          </S.HashTags>
-          <S.SectionTitle>
-            <SymbolTwoIcon width={18} height={18} />
-            이럴 때 쓰세요
-          </S.SectionTitle>
-          <S.SectionText>{memeDetail?.success.usageContext}</S.SectionText>
-          <S.SectionTitle>
-            <SymbolThreeIcon width={18} height={18} />
-            이렇게 시작됐어요
-          </S.SectionTitle>
-          <S.SectionText>{memeDetail?.success.origin}</S.SectionText>
-        </S.ContentContainer>
-      </S.Container>
-      <S.ButtonContainer>
-        <S.ActionButton
-          isPrimary
-          onClick={() => {
-            // 밈 꾸미기 mutation
-            customMeme({ id: memeId! });
+      {isLoading ? (
+        <MemeDetailSkeleton />
+      ) : (
+        <>
+          <S.Container>
+            <S.ImageContainer>
+              <S.Image
+                src={memeDetail?.success.imgUrl}
+                alt={memeDetail?.success.title}
+              />
+            </S.ImageContainer>
+            <S.ContentContainer>
+              <S.Title>{memeDetail?.success.title}</S.Title>
+              <S.HashTags>
+                {memeDetail?.success.hashtags.map((tag) => `${tag} `)}
+              </S.HashTags>
+              <S.SectionTitle>
+                <SymbolTwoIcon width={18} height={18} />
+                이럴 때 쓰세요
+              </S.SectionTitle>
+              <S.SectionText>{memeDetail?.success.usageContext}</S.SectionText>
+              <S.SectionTitle>
+                <SymbolThreeIcon width={18} height={18} />
+                이렇게 시작됐어요
+              </S.SectionTitle>
+              <S.SectionText>{memeDetail?.success.origin}</S.SectionText>
+            </S.ContentContainer>
+          </S.Container>
+          <S.ButtonContainer>
+            <S.ActionButton
+              isPrimary
+              onClick={() => {
+                // 밈 꾸미기 mutation
+                customMeme({ id: memeId! });
 
-            if (isWebview) {
-              nativeBridge.customMeme({
-                title: memeDetail?.success.title ?? '',
-                image: memeDetail?.success.imgUrl ?? '',
-              });
-            } else {
-              moveToStore();
-            }
-          }}
-        >
-          <MemeDesignPenIcon />
-          <span>밈 꾸미기</span>
-        </S.ActionButton>
-        <S.ActionButton
-          onClick={() => {
-            // 밈 공유하기 mutation
-            shareMeme({ id: memeId! });
+                if (isWebview) {
+                  nativeBridge.customMeme({
+                    title: memeDetail?.success.title ?? '',
+                    image: memeDetail?.success.imgUrl ?? '',
+                  });
+                } else {
+                  moveToStore();
+                }
+              }}
+            >
+              <MemeDesignPenIcon />
+              <span>밈 꾸미기</span>
+            </S.ActionButton>
+            <S.ActionButton
+              onClick={() => {
+                // 밈 공유하기 mutation
+                shareMeme({ id: memeId! });
 
-            // 공유 시트 열기
-            setShareSheetOpen(true);
-          }}
-        >
-          <ShareIcon />
-          <span>공유하기</span>
-        </S.ActionButton>
-      </S.ButtonContainer>
+                // 공유 시트 열기
+                setShareSheetOpen(true);
+              }}
+            >
+              <ShareIcon />
+              <span>공유하기</span>
+            </S.ActionButton>
+          </S.ButtonContainer>
+        </>
+      )}
       <MemeShareSheet
         isOpen={shareSheetOpen}
         onClose={() => setShareSheetOpen(false)}
