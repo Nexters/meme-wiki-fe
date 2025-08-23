@@ -15,9 +15,9 @@
     <img src="https://img.shields.io/badge/ESLint-8.57.0-4B32C3?logo=eslint"/>
 </div>
 
-## [👉🏻 Meme Wiki 웹사이트 바로가기](https://meme-wiki.net/)
-## [🍎 Meme Wiki 앱스토어 바로가기](https://apps.apple.com/us/app/%EB%AF%B8%EB%AF%B8%ED%82%A4-memewiki/id6751053974)
-## [🤖 Meme Wiki 구글스토어 바로가기](https://play.google.com/store/apps/details?id=com.mimu_bird.meme)
+### [👉🏻 Meme Wiki 웹사이트 바로가기](https://meme-wiki.net/)
+### [🍎 Meme Wiki 앱스토어 바로가기](https://apps.apple.com/us/app/%EB%AF%B8%EB%AF%B8%ED%82%A4-memewiki/id6751053974)
+### [🤖 Meme Wiki 구글플레이 스토어 바로가기](https://play.google.com/store/apps/details?id=com.mimu_bird.meme)
 
 
 
