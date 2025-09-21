@@ -53,6 +53,9 @@ const ErrorText = styled.p`
 
 const ButtonWrapper = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   bottom: 40px;
   left: 20px;
   right: 20px;
